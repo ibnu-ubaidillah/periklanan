@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Periklanan | Dashboard</title>
+  <title>Periklanan | AboutCirebonID</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha256-pODNVtK3uOhL8FUNWWvFQK0QoQoV3YA9wGGng6mbZ0E=" crossorigin="anonymous" />
   <!-- Data Tables -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
@@ -140,7 +141,7 @@
             <?php } ?>
           <?php } ?>
           <?php if ($this->fungsi->user_login()->level == 2) { ?>
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview <?= $this->uri->segment(2) == 'laporan_pengguna' || $this->uri->segment(2) == 'laporan_iklan' || $this->uri->segment(2) == 'laporan_pembayaran' ? 'menu-open' : '' ?>">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-clipboard-list"></i>
                 <p>
@@ -150,19 +151,19 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="../index.html" class="nav-link">
+                  <a href="" class="nav-link <?= $this->uri->segment(2) == 'laporan_iklan' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Laporan Iklan</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../index.html" class="nav-link">
+                  <a href="<?= base_url('laporan/laporan_pengguna') ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan_pengguna' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Pelanggan</p>
+                    <p>Laporan Pengguna</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="../index.html" class="nav-link">
+                  <a href="../index.html" class="nav-link <?= $this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : '' ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Laporan Pembayaran</p>
                   </a>
@@ -211,13 +212,20 @@
   <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Data Tables -->
   <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+  <!-- export data -->
+  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/jszip/jszip.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="<?= base_url() ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+
   <script src="<?= base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
   <!-- AdminLTE App -->
   <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
 
   <script src="<?= base_url() ?>assets/plugins/sweetalert2/sweetalert2.all.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js" integrity="sha256-siqh9650JHbYFKyZeTEAhq+3jvkFCG8Iz+MHdr9eKrw=" crossorigin="anonymous"></script>
@@ -229,6 +237,22 @@
       $("#Table1").DataTable({
         "responsive": true,
         "autoWidth": false,
+      });
+
+      $("#laporanPengguna").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'pdf',
+            orientation: 'potrait',
+            pageSize: 'Legal',
+            title: 'Laporan Data Pengguna',
+            titleAttr: 'Export ke PDF',
+            download: 'open'
+          },
+          'csv', 'excel', 'print', 'copy'
+        ]
       });
     });
   </script>
