@@ -42,7 +42,6 @@
                 <div class="icon">
                   <i class="fa fa-users"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3">
@@ -55,7 +54,6 @@
                 <div class="icon">
                   <i class="fa fa-user-plus"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3">
@@ -68,7 +66,6 @@
                 <div class="icon">
                   <i class="fa fa-money-check-alt"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3 pr-3">
@@ -81,7 +78,6 @@
                 <div class="icon">
                   <i class="fa fa-stream"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
         </div>
