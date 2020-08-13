@@ -15,4 +15,12 @@ class Laporan extends CI_Controller
 
         $this->template->load('template', 'laporan/laporan_pengguna', $data);
     }
+
+    public function print_pengguna()
+    {
+        $data['pengguna'] = $this->pengguna_m->get();
+        $data['judul']  = "Print Pengguna";
+
+        $this->load->view('pengguna/laporan_pengguna', $data);
+    }
 }

@@ -1,32 +1,24 @@
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Laporan</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?= base_url('dashboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Laporan Pengguna</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
+<!DOCTYPE html>
+<html>
 
-    <!-- Main content -->
+<head>
+    <title><?= $judul ?></title>
+    <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
+</head>
+
+<body>
     <section class="content">
         <div class="card">
             <div class="card-header">
-                <div class="float-right">
-                    <a href="<?= site_url('laporan/print_pengguna') ?>" class="btn btn-info btn-sm"><i class="fa fa-print"></i> Print Data</a>
-                </div>
-                <h3 class="card-title">Laporan Data Pengguna</h3>
+                <center>
+                    <h2>AboutCirebonID</h2>
+                    <h4>Laporan Data Pengguna</h4>
+                </center>
             </div>
             <div class="card-body">
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered table-striped" id="Table1">
+                    <table class="table table-bordered table-striped border-1">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -69,5 +61,22 @@
                     </table>
                 </div>
             </div>
+            <div class="card-footer">
+                <div class="float-right">
+                    <b>Version</b> 3.1.0-pre
+                </div>
+                <strong>Copyright &copy; 2020 <a href="http://aboutcirebon.id" target="_blank">AboutCirebon</a>.</strong> built with <i class="fa fa-heart" style="color: red"></i>
+            </div>
+        </div>
 
     </section>
+
+    <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
+    <script>
+        window.print();
+    </script>
+
+</body>
+
+</html>
