@@ -212,14 +212,6 @@
   <script src="<?= base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Data Tables -->
   <script src="<?= base_url() ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-  <!-- export data -->
-  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/jszip/jszip.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
 
   <script src="<?= base_url() ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -237,22 +229,6 @@
       $("#Table1").DataTable({
         "responsive": true,
         "autoWidth": false,
-      });
-
-      $("#laporanPengguna").DataTable({
-        "responsive": true,
-        "autoWidth": false,
-        dom: 'Bfrtip',
-        buttons: [{
-            extend: 'pdf',
-            orientation: 'potrait',
-            pageSize: 'Legal',
-            title: 'Laporan Data Pengguna',
-            titleAttr: 'Export ke PDF',
-            download: 'open'
-          },
-          'csv', 'excel', 'print', 'copy'
-        ]
       });
     });
   </script>

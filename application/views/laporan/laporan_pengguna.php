@@ -24,7 +24,7 @@
             </div>
             <div class="card-body">
                 <div class="box-body table-responsive">
-                    <table class="table table-bordered table-striped" id="laporanPengguna">
+                    <table class="table table-bordered table-striped" id="Table1">
                         <thead>
                             <tr>
                                 <th>#</th>
