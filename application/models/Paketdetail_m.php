@@ -38,11 +38,14 @@ class Paketdetail_m extends CI_Model
 
     public function edit($post)
     {
-        $array['nama_paket'] = $post['nama_paket'];;
+        $array['id_paket'] = $post['nama_paket'];
+        $array['tipe_paket'] = $post['tipe_paket'];
+        $array['jumlah_tayang'] = $post['tayang'];
+        $array['harga'] = $post['harga'];
 
 
-        $this->db->where('id_paket', $post['id_paket']);
-        $this->db->update('tbl_paket', $array);
+        $this->db->where('id_detail', $post['id_detail']);
+        $this->db->update('tbl_detailpaket', $array);
     }
 
     public function hapus($id)
