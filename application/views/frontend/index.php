@@ -132,7 +132,7 @@
                                         Penayangan Iklan <?= $data['jumlah_tayang'] ?>x
                                     </li>
                                     <li>
-                                        Harga Total <?= $data['harga'] ?> ribu
+                                        Harga Total : <?= number_format($data['harga'], 0, ".", ".") ?>
                                     </li>
                                 </p>
                                 <a href="<?= base_url('auth/login') ?>" class="btn btn-primary">Pesan Sekarang</a>

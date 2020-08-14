@@ -22,7 +22,7 @@
         <div class="card-header">
           <h3 class="card-title">Data Paket Detail</h3>
           <div class="float-right">
-            <a href="<?= site_url('paket/tambah') ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Tambah</a>
+            <a href="<?= site_url('paket_detail/tambah') ?>" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Tambah</a>
           </div>
         </div>
         <div class="card-body">
@@ -49,7 +49,7 @@
 
                     <td> <?= $data->tipe_paket ?></td>
                     <td><?= $data->jumlah_tayang ?></td>
-                    <td><?= $data->harga ?></td>
+                    <td><?= number_format($data->harga, 0, ".", ".") ?></td>
                     <td class="text-center">
                       <form action="<?= site_url('paket_detail/hapus') ?>" method="POST">
                         <a href="<?= site_url('paket_detail/edit/' . $data->id_detail) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>

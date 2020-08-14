@@ -28,9 +28,12 @@ class Paketdetail_m extends CI_Model
 
     public function tambah($post)
     {
-        $array['nama_paket'] = $post['nama_paket'];
+        $array['id_paket'] = $post['nama_paket'];
+        $array['tipe_paket'] = $post['tipe_paket'];
+        $array['jumlah_tayang'] = $post['tayang'];
+        $array['harga'] = $post['harga'];
 
-        $this->db->insert('tbl_paket', $array);
+        $this->db->insert('tbl_detailpaket', $array);
     }
 
     public function edit($post)
@@ -46,5 +49,15 @@ class Paketdetail_m extends CI_Model
     {
         $this->db->where('id_detail', $id);
         $this->db->delete('tbl_detailpaket');
+    }
+
+    public function getPaketUtama()
+    {
+        $this->db->select('*');
+        $this->db->distinct('nama_paket');
+        $this->db->from('tbl_paket');
+
+        $query = $this->db->get()->result();
+        return $query;
     }
 }

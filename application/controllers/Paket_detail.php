@@ -21,17 +21,24 @@ class Paket_detail extends CI_Controller
   public function tambah()
   {
     $this->form_validation->set_rules('nama_paket', 'Nama Paket', 'required');
+    $this->form_validation->set_rules('tipe_paket', 'Tipe Paket', 'required');
+    $this->form_validation->set_rules('tayang', 'Jumlah Tayang', 'required');
+    $this->form_validation->set_rules('harga', 'Harga Paket', 'required');
+
+    $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
 
     if ($this->form_validation->run() == FALSE) {
-      $this->template->load('template', 'paket/paket_utama/tambah_data_paket');
+
+      $data['row'] = $this->paketdetail_m->getPaketUtama();
+      $this->template->load('template', 'paket/paket_detail/tambah_data_paket_detail', $data);
     } else {
       $post = $this->input->post(null, TRUE);
-      $this->paket_m->tambah($post);
+      $this->paketdetail_m->tambah($post);
 
       if ($this->db->affected_rows() > 0) {
         echo "<script>
           alert('Data berhasil disimpan');
-          window.location='" . site_url('paket') . "';
+          window.location='" . site_url('paket_detail') . "';
         </script>";
       }
     }
@@ -40,12 +47,18 @@ class Paket_detail extends CI_Controller
   public function edit($id)
   {
     $this->form_validation->set_rules('nama_paket', 'Nama Paket', 'required');
+    $this->form_validation->set_rules('tipe_paket', 'Tipe Paket', 'required');
+    $this->form_validation->set_rules('tayang', 'Jumlah Tayang', 'required');
+    $this->form_validation->set_rules('harga', 'Harga Paket', 'required');
+
+    $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
 
     if ($this->form_validation->run() == FALSE) {
-      $query = $this->paket_m->get($id);
+      $data['paket_utama'] = $this->paketdetail_m->getPaketUtama();
+      $query = $this->paketdetail_m->get($id);
       if ($query->num_rows() > 0) {
         $data['row'] = $query->row();
-        $this->template->load('template', 'paket/paket_utama/edit_data_paket', $data);
+        $this->template->load('template', 'paket/paket_detail/edit_data_paket_detail', $data);
       } else {
         echo "<script>
             alert('Data tidak ditemukan!');
@@ -54,12 +67,12 @@ class Paket_detail extends CI_Controller
       }
     } else {
       $post = $this->input->post(null, TRUE);
-      $this->paket_m->edit($post);
+      $this->paketdetail_m->edit($post);
 
       if ($this->db->affected_rows() > 0) {
         echo "<script>
           alert('Data berhasil disimpan');
-          window.location='" . site_url('paket') . "';
+          window.location='" . site_url('paket_detail') . "';
         </script>";
       }
     }

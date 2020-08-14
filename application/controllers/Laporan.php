@@ -19,7 +19,7 @@ class Laporan extends CI_Controller
     public function print_pengguna()
     {
         $data['pengguna'] = $this->pengguna_m->get();
-        $data['judul']  = "Print Pengguna";
+        $data['judul']  = "Periklanan | AboutCirebonID";
 
         $this->load->view('pengguna/laporan_pengguna', $data);
     }
