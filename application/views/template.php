@@ -82,8 +82,8 @@
             </li>
             <?php if ($this->fungsi->user_login()->level == 1 || $this->fungsi->user_login()->level == 3) { ?>
               <li class="nav-item has-treeview">
-                <a href="#" class="nav-link <?= $this->uri->segment(1) == 'pengajuan' ? 'active' : '' ?>">
-                  <i class="nav-icon fas fa-ad"></i>
+                <a href="<?= base_url('pengajuan') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengajuan' ? 'active' : '' ?>">
+                  <i class="nav-icon fas fa-book"></i>
                   <p>
                     Kelola Pengajuan Iklan
                   </p>
@@ -91,7 +91,7 @@
               </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link <?= $this->uri->segment(1) == 'pembayaran' ? 'active' : '' ?>">
-                  <i class="nav-icon fas fa-ad"></i>
+                  <i class="nav-icon fas fa-money-check-alt"></i>
                   <p>
                     Kelola Pembayaran Iklan
                   </p>
@@ -229,8 +229,106 @@
         "responsive": true,
         "autoWidth": false,
       });
+      $("#Table2").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
+      $("#Table3").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
     });
   </script>
 </body>
 
 </html>
+
+<!-- Modal Tambah-->
+<div class="modal fade" id="modalTambah">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tambah Data Pengajuan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" class="form-control" value="<?= $this->fungsi->user_login()->username ?>" disabled>
+        <label for="nama">Nama Pengguna</label>
+        <input type="text" name="nama" id="nama" class="form-control" value="<?= $this->fungsi->user_login()->nama ?>" disabled>
+        <label for="konten">Konten Iklan</label>
+        <input type="file" name="konten" id="konten" class="form-control" autofocus />
+        <label for="caption">Caption</label>
+        <textarea name="caption" id="caption" cols="5" rows="5" class="form-control"></textarea>
+        <label for="paket">Paket Utama</label>
+        <select name="paket_utama" id="paket_utama" class="form-control">
+          <option value=""></option>
+        </select>
+        <label for="tipe_paket">Tipe Paket</label>
+        <select name="tipe_paket" id="tipe_paket" class="form-control">
+          <option value=""></option>
+        </select>
+        <label for="jml_tayang">Jumlah Penayangan</label>
+        <select name="jml_tayang" id="jml_tayang" class="form-control">
+          <option value=""></option>
+        </select>
+        <label for="harga">Harga</label>
+        <input type="text" name="harga" id="harga" class="form-control" disabled>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <input type="submit" name="simpan" class="btn btn-primary" value="Simpan" />
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Konten-->
+<div class="modal fade" id="modalKonten">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Data Konten</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="konten">Nama Pengguna</label>
+
+        <label for="caption">Caption</label>
+        <textarea name="caption" id="caption" cols="5" rows="5" class="form-control" disabled></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Paket-->
+<div class="modal fade" id="modalPaket">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Data Paket</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="paket_utama">Paket Utama</label>
+        <input type="text" name="paket_utama" id="paket_utama" class="form-control" disabled>
+        <label for="tipe_paket">Tipe Paket</label>
+        <input type="text" name="tipe_paket" id="tipe_paket" class="form-control" disabled>
+        <label for="jml_tayang">Jumlah Penayangan</label>
+        <input type="text" name="jml_tayang" id="jml_tayang" class="form-control" disabled>
+        <label for="harga">Harga</label>
+        <input type="text" name="harga" id="harga" class="form-control" disabled>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -82,7 +82,8 @@
             <ul class="nav nav-pills">
               <li class="nav-item"><a class="nav-link active" href="#akun" data-toggle="tab">Akun saya</a></li>
             </ul>
-          </div><!-- /.card-header -->
+          </div>
+          <!-- /.card-header -->
           <div class="card-body">
             <div class="tab-content">
               <div class="active tab-pane" id="akun">
