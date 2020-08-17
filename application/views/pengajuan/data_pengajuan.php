@@ -12,8 +12,7 @@
                     </ol>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah" style="margin-left: 939px"><i class="fa fa-plus"></i> Tambah Pengajuan</button>
-
+            <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 939px;"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
         </div>
         <!-- /.container-fluid -->
     </section>
@@ -34,123 +33,188 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="active tab-pane" id="pending">
-                                    <table class="table table-bordered table-striped table-responsive" id="Table1">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Tanggal</th>
-                                                <th>Nama Pengguna</th>
-                                                <th>Konten Iklan</th>
-                                                <th>Paket</th>
-                                                <th>Status</th>
-                                                <th>Keterangan</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalKonten">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Konten</button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPaket">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Paket</button>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="col-md">
+                                        <table class="table table-bordered table-striped table-responsive" id="Table1">
+                                            <thead>
+                                                <tr>
+                                                    <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                                                        <th>#</th>
+                                                        <th width="90px">Tanggal</th>
+                                                        <th width="130px">Kode Pengajuan</th>
+                                                        <th width="130px">Pengguna</th>
+                                                        <th>Konten</th>
+                                                        <th width="50px">Paket</th>
+                                                        <th>Status</th>
+                                                        <th width="190px">Keterangan</th>
+                                                    <?php } else { ?>
+                                                        <th>#</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Kode Pengajuan</th>
+                                                        <th>Pengguna</th>
+                                                        <th>Konten</th>
+                                                        <th>Paket</th>
+                                                        <th>Status</th>
+                                                        <th>Keterangan</th>
+                                                    <?php } ?>
+                                                    <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                        <th>Aksi</th>
+                                                    <?php } ?>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                foreach ($pengajuan as $data) { ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= tgl_indo(date('Y-m-d')) ?></td>
+                                                        <td width="100px"><?= $data->kode_pengajuan ?></td>
+                                                        <td><?= $data->nama ?></td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($data->status == "Pending") {
+                                                                echo "<span class='badge badge-primary'>Pending</span>";
+                                                            } else if ($data->status == "Diterima") {
+                                                                echo "<span class='badge badge-success'>Diterima</span>";
+                                                            } else {
+                                                                echo "<span class='badge badge-danger'>Ditolak</span>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $data->keterangan ?></td>
+                                                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
+                                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
+                                                            </td>
+                                                        <?php } ?>
+                                                    </tr>
+                                            </tbody>
+                                        <?php
+                                                }
+                                        ?>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="tab-pane" id="tolak">
-                                    <table class="table table-bordered table-striped table-responsive" id="Table2">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Tanggal</th>
-                                                <th>Nama Pengguna</th>
-                                                <th>Konten Iklan</th>
-                                                <th>Paket</th>
-                                                <th>Status</th>
-                                                <th>Keterangan</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalKonten">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Konten</button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPaket">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Paket</button>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
-                                                </td>
-                                            </tr>
+                                <div class="tab-pane" id="terima">
+                                    <div class="col-lg-12">
+                                        <table class="table table-bordered table-striped table-responsive" id="Table2">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Kode Pengajuan</th>
+                                                    <th>Pengguna</th>
+                                                    <th>Konten</th>
+                                                    <th>Paket</th>
+                                                    <th>Status</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                foreach ($pengajuan_terima as $data) { ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= date('d F Y', strtotime($data->tanggal)) ?></td>
+                                                        <td><?= $data->kode_pengajuan ?></td>
+                                                        <td><?= $data->nama ?></td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($data->status == "Pending") {
+                                                                echo "<span class='badge badge-primary'>Pending</span>";
+                                                            } else if ($data->status == "Diterima") {
+                                                                echo "<span class='badge badge-success'>Diterima</span>";
+                                                            } else {
+                                                                echo "<span class='badge badge-danger'>Ditolak</span>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $data->keterangan ?></td>
+                                                        <td class="text-center">
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
+                                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        <?php
+                                                }
+                                        ?>
                                         </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- /.tab-content -->
-                                <div class="tab-pane" id="terima">
-                                    <table class="table table-bordered table-striped table-responsive" id="Table3">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Tanggal</th>
-                                                <th>Nama Pengguna</th>
-                                                <th>Konten Iklan</th>
-                                                <th>Paket</th>
-                                                <th>Status</th>
-                                                <th>Keterangan</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalKonten">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Konten</button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalPaket">
-                                                        <i class="fa fa-eye"></i>
-                                                        Lihat Paket</button>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
-                                                </td>
-                                            </tr>
+                                <div class="tab-pane" id="tolak">
+                                    <div class="col-lg-12">
+                                        <table class="table table-bordered table-striped table-responsive" id="Table3">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Kode Pengajuan</th>
+                                                    <th>Pengguna</th>
+                                                    <th>Konten</th>
+                                                    <th>Paket</th>
+                                                    <th>Status</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $no = 1;
+                                                foreach ($pengajuan_tolak as $data) { ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= date('d F Y', strtotime($data->tanggal)) ?></td>
+                                                        <td><?= $data->kode_pengajuan ?></td>
+                                                        <td><?= $data->nama ?></td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                            if ($data->status == "Pending") {
+                                                                echo "<span class='badge badge-primary'>Pending</span>";
+                                                            } else if ($data->status == "Diterima") {
+                                                                echo "<span class='badge badge-success'>Diterima</span>";
+                                                            } else {
+                                                                echo "<span class='badge badge-danger'>Ditolak</span>";
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= $data->keterangan ?></td>
+                                                        <td class="text-center">
+                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
+                                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        <?php
+                                                }
+                                        ?>
                                         </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- /.tab-content -->
                             </div><!-- /.card-body -->
