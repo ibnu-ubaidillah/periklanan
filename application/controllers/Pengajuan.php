@@ -14,7 +14,9 @@ class Pengajuan extends CI_Controller
     public function index()
     {
         cek_tidak_login();
-        $data['pengajuan'] = $this->pengajuan_m->getPengajuan();
+        $id = $this->fungsi->user_login()->id_pengguna;
+        $level =  $this->fungsi->user_login()->level;
+        $data['pengajuan'] = $this->pengajuan_m->getPengajuan($id, $level);
         $data['pengajuan_terima'] = $this->pengajuan_m->getPengajuanTerima();
         $data['pengajuan_tolak'] = $this->pengajuan_m->getPengajuanTolak();
 

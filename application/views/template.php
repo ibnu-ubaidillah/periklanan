@@ -259,7 +259,7 @@
             var html = '';
             var i;
             for (i = 0; i < data.length; i++) {
-              html += '<option value="+ data[i].tipe_paket +">' + data[i].tipe_paket + '</option>';
+              html += '<option value="+ data[i].id_tipepaket +">' + data[i].tipe_paket + '</option>';
             }
             $('.tipePaket').html(html);
 
