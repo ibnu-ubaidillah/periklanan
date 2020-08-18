@@ -34,22 +34,23 @@
                                 <label for="nama">Nama Paket *</label>
                                 <input type="hidden" name="id_detail" value="<?= $row->id_detail ?>">
                                 <select name="nama_paket" id="nama" class="form-control">
-                                    <option value="">-- Paket --</option>
+                                    <option value=""></option>
                                     <?php
                                     $nama = $this->input->post('nama_paket') ? $this->input->post('nama_paket') : $row->id_paket;
                                     foreach ($paket as $data) { ?>
-                                        <option value="<?= $data->id_paket ?>" <?= $nama == $row->id_paket ? "selected" : null ?>><?= $data->nama_paket ?></option>
+                                        <option value="<?= $data->id_paket ?>" <?= $nama == $data->id_paket ? "selected" : null ?>><?= $data->nama_paket ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tipe_paket">Tipe Paket *</label>
                                 <select name="tipe_paket" id="tipe_paket" class="form-control">
-                                    <?php $tipe = $this->input->post('tipe_paket') ? $this->input->post('tipe_paket') : $row->tipe_paket ?>
-                                    <option value="">-- Tipe Paket --</option>
-                                    <option value="Standard" <?= $tipe == "Standard" ? "selected" : null ?>>Standard</option>
-                                    <option value="Medium" <?= $tipe == "Medium" ? "selected" : null ?>>Medium</option>
-                                    <option value="Premium" <?= $tipe == "Premium" ? "selected" : null ?>>Premium</option>
+                                    <option value=""></option>
+                                    <?php
+                                    $tipe = $this->input->post('tipe_paket') ? $this->input->post('tipe_paket') : $row->id_tipepaket;
+                                    foreach ($kategori as $data) { ?>
+                                        <option value="<?= $data->id_tipepaket ?>" <?= $tipe == $data->id_tipepaket ? "selected" : null ?>><?= $data->tipe_paket ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">

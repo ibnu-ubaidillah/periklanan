@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2020 at 12:45 PM
+-- Generation Time: Aug 18, 2020 at 08:23 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_detailpaket` (
   `id_detail` int(11) NOT NULL,
   `id_paket` int(11) NOT NULL,
-  `tipe_paket` varchar(128) NOT NULL,
+  `id_tipepaket` int(11) NOT NULL,
   `jumlah_tayang` int(11) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,15 +40,15 @@ CREATE TABLE `tbl_detailpaket` (
 -- Dumping data for table `tbl_detailpaket`
 --
 
-INSERT INTO `tbl_detailpaket` (`id_detail`, `id_paket`, `tipe_paket`, `jumlah_tayang`, `harga`) VALUES
-(1, 1, 'Standard', 1, 100000),
-(2, 1, 'Standard', 4, 300000),
-(3, 1, 'Standard', 8, 500000),
-(4, 2, 'Standard', 1, 200000),
-(5, 2, 'Standard', 3, 450000),
-(6, 2, 'Standard', 6, 850000),
-(7, 2, 'Medium', 1, 250000),
-(8, 2, 'Premium', 2, 1000000);
+INSERT INTO `tbl_detailpaket` (`id_detail`, `id_paket`, `id_tipepaket`, `jumlah_tayang`, `harga`) VALUES
+(1, 1, 1, 1, 100000),
+(2, 1, 1, 4, 300000),
+(3, 1, 1, 8, 500000),
+(4, 2, 1, 1, 200000),
+(5, 2, 1, 3, 450000),
+(6, 2, 1, 6, 850000),
+(7, 2, 2, 1, 250000),
+(8, 2, 3, 2, 1000000);
 
 -- --------------------------------------------------------
 
@@ -69,6 +69,32 @@ CREATE TABLE `tbl_paket` (
 INSERT INTO `tbl_paket` (`id_paket`, `nama_paket`, `tgl_dibuat`) VALUES
 (1, 'Paket Tanpa ADS', '2020-08-08 09:11:39'),
 (2, 'Paket Dengan ADS (Metode Iklan Powerful)', '2020-08-08 09:11:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pengajuan`
+--
+
+CREATE TABLE `tbl_pengajuan` (
+  `id_pengajuan` int(11) NOT NULL,
+  `kode_pengajuan` varchar(25) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
+  `id_paket` int(11) NOT NULL,
+  `id_detail` int(11) NOT NULL,
+  `konten` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `tanggal` int(11) NOT NULL,
+  `status` varchar(25) NOT NULL DEFAULT 'Pending',
+  `keterangan` varchar(25) NOT NULL DEFAULT '-'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pengajuan`
+--
+
+INSERT INTO `tbl_pengajuan` (`id_pengajuan`, `kode_pengajuan`, `id_pengguna`, `id_paket`, `id_detail`, `konten`, `caption`, `tanggal`, `status`, `keterangan`) VALUES
+(1, 'KP0001', 6, 2, 1, 'IMAGE.jpg', 'Ini adalah caption', 20200817, 'Pending', '-');
 
 -- --------------------------------------------------------
 
@@ -102,6 +128,27 @@ INSERT INTO `tbl_pengguna` (`id_pengguna`, `username`, `password`, `email`, `nam
 (4, 'Dandi', '6467baa3b187373e3931422e2a8ef22f3e447d77', 'Dandi_@hotmail.com', 'Dandi Agustian Syah', '   Surabaya', '089245345678', 'Laki-laki', 3, '2020-08-10 10:11:39', 1, '2020-08-10 10:11:39'),
 (6, 'Faisal', 'a6addb9ffb18bd870b260590177a30e43a3d218d', 'Zafkhiell444@yahoo.co.id', 'Akhmad Faisall', 'Cirebon', '089234211245', 'Laki-laki', 3, '2020-08-10 09:34:14', 1, '2020-08-10 09:34:14');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_tipepaket`
+--
+
+CREATE TABLE `tbl_tipepaket` (
+  `id_tipepaket` int(11) NOT NULL,
+  `tipe_paket` varchar(50) NOT NULL,
+  `tgl_dibuat` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_tipepaket`
+--
+
+INSERT INTO `tbl_tipepaket` (`id_tipepaket`, `tipe_paket`, `tgl_dibuat`) VALUES
+(1, 'Standard', '2020-08-18 05:22:36'),
+(2, 'Medium', '2020-08-18 05:23:41'),
+(3, 'Premium', '2020-08-18 05:23:30');
+
 --
 -- Indexes for dumped tables
 --
@@ -119,10 +166,22 @@ ALTER TABLE `tbl_paket`
   ADD PRIMARY KEY (`id_paket`);
 
 --
+-- Indexes for table `tbl_pengajuan`
+--
+ALTER TABLE `tbl_pengajuan`
+  ADD PRIMARY KEY (`id_pengajuan`);
+
+--
 -- Indexes for table `tbl_pengguna`
 --
 ALTER TABLE `tbl_pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
+
+--
+-- Indexes for table `tbl_tipepaket`
+--
+ALTER TABLE `tbl_tipepaket`
+  ADD PRIMARY KEY (`id_tipepaket`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -132,19 +191,31 @@ ALTER TABLE `tbl_pengguna`
 -- AUTO_INCREMENT for table `tbl_detailpaket`
 --
 ALTER TABLE `tbl_detailpaket`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
-  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tbl_pengajuan`
+--
+ALTER TABLE `tbl_pengajuan`
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_pengguna`
 --
 ALTER TABLE `tbl_pengguna`
   MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `tbl_tipepaket`
+--
+ALTER TABLE `tbl_tipepaket`
+  MODIFY `id_tipepaket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

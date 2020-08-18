@@ -53,7 +53,9 @@ class Paket_detail extends CI_Controller
     $this->form_validation->set_rules('harga', 'Harga Paket', 'required');
 
     $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+
     $data['paket'] = $this->paketdetail_m->getPaketUtama();
+    $data['kategori'] = $this->paketdetail_m->getKategori();
     if ($this->form_validation->run() == FALSE) {
       $query = $this->paketdetail_m->get($id);
       if ($query->num_rows() > 0) {
