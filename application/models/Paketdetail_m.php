@@ -63,4 +63,13 @@ class Paketdetail_m extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function getKategori()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_tipepaket');
+
+        $query = $this->db->get()->result();
+        return $query;
+    }
 }

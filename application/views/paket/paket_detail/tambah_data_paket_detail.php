@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label for="nama">Nama Paket *</label>
                                 <select name="nama_paket" id="nama" class="form-control">
-                                    <option value="">-- Paket --</option>
+                                    <option value=""></option>
                                     <?php foreach ($row as $data) { ?>
                                         <option value="<?= $data->id_paket ?>" <?= set_value('nama_paket') == $data->id_paket ? "selected" : null ?>><?= $data->nama_paket ?></option>
                                     <?php } ?>
@@ -42,10 +42,10 @@
                             <div class="form-group">
                                 <label for="tipe_paket">Tipe Paket *</label>
                                 <select name="tipe_paket" id="tipe_paket" class="form-control">
-                                    <option value="">-- Tipe Paket --</option>
-                                    <option value="standard" <?= set_value('tipe_paket') == 'standard' ? "selected" : null ?>>Standard</option>
-                                    <option value="medium" <?= set_value('tipe_paket') == 'medium' ? "selected" : null ?>>Medium</option>
-                                    <option value="premium" <?= set_value('tipe_paket') == 'premium' ? "selected" : null ?>>Premium</option>
+                                    <option value=""></option>
+                                    <?php foreach ($kategori as $data) { ?>
+                                        <option value="<?= $data->id_tipepaket ?>" <?= set_value('tipe_paket') == $data->id_tipepaket ? "selected" : null ?>><?= $data->tipe_paket ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">

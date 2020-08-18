@@ -52,7 +52,7 @@
                                 <label for="paket_utama">Daftar Paket</label>
                                 <select name="paketutama" id="paket_utama" class="form-control">
                                     <option value=""></option>
-                                    <?php foreach ($paket->result() as $row) : ?>
+                                    <?php foreach ($paket as $row) : ?>
                                         <option value="<?php echo $row->id_paket; ?>"><?php echo $row->nama_paket; ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -68,11 +68,6 @@
                                 <select name="jml_tayang" class="jmlTayang form-control">
                                     <option value=""></option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="harga">Harga</label>
-                                <input type="number" name="harga" value="<?= set_value('harga') ?>" id="harga" class="form-control" readonly />
-                                <?= form_error('no_hp') ?>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Simpan</button>

@@ -32,7 +32,7 @@
                 <tr>
                   <th>#</th>
                   <th>Paket Utama</th>
-                  <th>Tipe Paket</th>
+                  <th>Kategori</th>
                   <th>Jumlah Penayangan</th>
                   <th>Harga</th>
                   <th class="text-center">Aksi</th>
@@ -44,9 +44,7 @@
                 foreach ($row as $data) { ?>
                   <tr>
                     <td><?= $no++ ?></td>
-
                     <td> <?= $data->nama_paket ?></td>
-
                     <td> <?= $data->tipe_paket ?></td>
                     <td><?= $data->jumlah_tayang ?></td>
                     <td><?= number_format($data->harga, 0, ".", ".") ?></td>

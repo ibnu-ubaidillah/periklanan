@@ -32,6 +32,7 @@ class Pengajuan extends CI_Controller
             $dariDB = $this->pengajuan_m->generateKodePengajuan();
             $nourut = substr($dariDB, 3, 4);
             $kodePengajuanSekarang = $nourut + 1;
+
             $data['kode_pengajuan'] = $kodePengajuanSekarang;
             $data['paket'] = $this->pengajuan_m->getPaket();
             $this->template->load('template', 'pengajuan/tambah_pengajuan', $data);
@@ -52,6 +53,13 @@ class Pengajuan extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = $this->pengajuan_m->getDetailPaket($id);
+        echo json_encode($data);
+    }
+
+    public function getJmlTayang()
+    {
+        $id = $this->input->post('id');
+        $data = $this->pengajuan_m->getJmlTayang($id);
         echo json_encode($data);
     }
 }

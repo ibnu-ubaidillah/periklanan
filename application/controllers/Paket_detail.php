@@ -29,6 +29,7 @@ class Paket_detail extends CI_Controller
 
     if ($this->form_validation->run() == FALSE) {
 
+      $data['kategori'] = $this->paketdetail_m->getKategori();
       $data['row'] = $this->paketdetail_m->getPaketUtama();
       $this->template->load('template', 'paket/paket_detail/tambah_data_paket_detail', $data);
     } else {

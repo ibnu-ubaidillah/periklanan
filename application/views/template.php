@@ -97,7 +97,7 @@
                   </p>
                 </a>
                 <?php if ($this->fungsi->user_login()->level == 1) { ?>
-              <li class="nav-item has-treeview <?= $this->uri->segment(1) == 'paket' || $this->uri->segment(1) == 'paket_detail' ? 'menu-open' : '' ?>">
+              <li class="nav-item has-treeview <?= $this->uri->segment(1) == 'paket' || $this->uri->segment(1) == 'paket_detail' || $this->uri->segment(1) == 'tipe_paket' ? 'menu-open' : '' ?>">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-stream"></i>
                   <p>
@@ -116,6 +116,12 @@
                     <a href="<?= base_url('paket_detail') ?>" class="nav-link <?= $this->uri->segment(1) == 'paket_detail' ? 'active' : '' ?>">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Paket Detail</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?= base_url('tipe_paket') ?>" class="nav-link <?= $this->uri->segment(1) == 'tipe_paket' ? 'active' : '' ?>">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Kategori Paket</p>
                     </a>
                   </li>
                 <?php } ?>
@@ -260,7 +266,7 @@
           }
         });
         $.ajax({
-          url: "<?= base_url('pengajuan/getDetailPaket') ?>",
+          url: "<?= base_url('pengajuan/getJmlTayang') ?>",
           method: "POST",
           data: {
             id: id

@@ -50,13 +50,25 @@ class Pengajuan_m extends CI_Model
 
     public function getPaket()
     {
-        $hasil = $this->db->query("SELECT DISTINCT id_paket, nama_paket FROM tbl_paket");
-        return $hasil;
+        $this->db->select('*');
+        $this->db->from('tbl_paket');
+        $this->db->join('tbl_detailpaket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
+        $this->db->where('tbl_detailpaket.id_paket = tbl_paket.id_paket');
+        $this->db->group_by('tbl_paket.id_paket');
+
+        $query = $this->db->get()->result();
+        return $query;
     }
 
     public function getDetailPaket($id)
     {
-        $hasil = $this->db->query("SELECT DISTINCT id_detail, id_paket, tipe_paket, jumlah_tayang, harga FROM tbl_detailpaket WHERE id_paket='$id'");
+        $hasil = $this->db->query("SELECT * FROM tbl_detailpaket WHERE id_paket='$id' GROUP BY tipe_paket");
+        return $hasil->result();
+    }
+
+    public function getJmlTayang($id)
+    {
+        $hasil = $this->db->query("SELECT jumlah_tayang FROM tbl_detailpaket WHERE id_paket='$id' GROUP BY tipe_paket");
         return $hasil->result();
     }
 
