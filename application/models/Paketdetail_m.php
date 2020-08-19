@@ -40,7 +40,7 @@ class Paketdetail_m extends CI_Model
     public function edit($post)
     {
         $array['id_paket'] = $post['nama_paket'];
-        $array['tipe_paket'] = $post['tipe_paket'];
+        $array['id_tipepaket'] = $post['tipe_paket'];
         $array['jumlah_tayang'] = $post['tayang'];
         $array['harga'] = $post['harga'];
 

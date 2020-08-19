@@ -72,4 +72,24 @@ class Pengajuan extends CI_Controller
         $data['pengajuan'] = $this->pengajuan_m->getDetailPengajuan($id);
         $this->template->load('template', 'pengajuan/detail_pengajuan', $data);
     }
+
+    public function respon()
+    {
+        $this->form_validation->set_rules('alasan', 'Keterangan', 'required');
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->template->load('template', 'pengajuan/data_pengajuan');
+        } else {
+            $post = $this->input->post(null, TRUE);
+            $this->pengajuan_m->respon($post);
+
+            if ($this->db->affected_rows() > 0) {
+                echo "<script>
+                alert('Data berhasil disimpan');
+                window.location='" . site_url('pengajuan') . "';
+              </script>";
+            }
+        }
+    }
 }

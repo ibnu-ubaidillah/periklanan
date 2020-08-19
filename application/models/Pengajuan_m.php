@@ -101,4 +101,18 @@ class Pengajuan_m extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function respon($post)
+    {
+        $array['kode_pengajuan'] = $post['kode_pengajuan'];
+        $array['id_pengguna'] = $post['id_pengguna'];
+        $array['konten'] = $post['konten'];
+        $array['caption'] = $post['caption'];
+        $array['id_detail'] = $post['id_detail'];
+        $array['tanggal'] = date('Ymd');
+        $array['keterangan'] = '-';
+
+        $this->db->where('id_pengguna', $post['id_pengguna']);
+        $this->db->update('tbl_pengguna', $array);
+    }
 }

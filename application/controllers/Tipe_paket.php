@@ -54,7 +54,7 @@ class Tipe_paket extends CI_Controller
             }
         } else {
             $post = $this->input->post(null, TRUE);
-            $this->paket_m->edit($post);
+            $this->tipepaket_m->edit($post);
 
             if ($this->db->affected_rows() > 0) {
                 echo "<script>
