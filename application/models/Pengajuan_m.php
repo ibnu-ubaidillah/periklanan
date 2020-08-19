@@ -30,28 +30,47 @@ class Pengajuan_m extends CI_Model
         }
     }
 
-    public function getPengajuanTerima()
+    public function getPengajuanTerima($id, $level)
     {
-        $this->db->select('*');
-        $this->db->from('tbl_pengajuan');
-        $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-        $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
-        $this->db->where('tbl_pengajuan.status', 'Diterima');
-        $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        if ($level == 3) {
+            $this->db->select('*');
+            $this->db->from('tbl_pengajuan');
+            $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+            $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+            $this->db->where('tbl_pengajuan.status', 'Diterima');
+            $this->db->where('tbl_pengajuan.id_pengguna', $id);
+            $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        } else {
+            $this->db->select('*');
+            $this->db->from('tbl_pengajuan');
+            $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+            $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+            $this->db->where('tbl_pengajuan.status', 'Diterima');
+            $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        }
 
         $query = $this->db->get()->result();
         return $query;
     }
 
-    public function getPengajuanTolak()
+    public function getPengajuanTolak($id, $level)
     {
-        $this->db->select('*');
-        $this->db->from('tbl_pengajuan');
-        $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-        $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
-        $this->db->where('tbl_pengajuan.status', 'Ditolak');
-        $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
-
+        if ($level == 3) {
+            $this->db->select('*');
+            $this->db->from('tbl_pengajuan');
+            $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+            $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+            $this->db->where('tbl_pengajuan.status', 'Ditolak');
+            $this->db->where('tbl_pengajuan.id_pengguna', $id);
+            $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        } else {
+            $this->db->select('*');
+            $this->db->from('tbl_pengajuan');
+            $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+            $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+            $this->db->where('tbl_pengajuan.status', 'Ditolak');
+            $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        }
         $query = $this->db->get()->result();
         return $query;
     }
@@ -104,15 +123,10 @@ class Pengajuan_m extends CI_Model
 
     public function respon($post)
     {
-        $array['kode_pengajuan'] = $post['kode_pengajuan'];
-        $array['id_pengguna'] = $post['id_pengguna'];
-        $array['konten'] = $post['konten'];
-        $array['caption'] = $post['caption'];
-        $array['id_detail'] = $post['id_detail'];
-        $array['tanggal'] = date('Ymd');
-        $array['keterangan'] = '-';
+        $array['status'] = $post['status'];
+        $array['keterangan'] = $post['alasan'];
 
-        $this->db->where('id_pengguna', $post['id_pengguna']);
-        $this->db->update('tbl_pengguna', $array);
+        $this->db->where('id_pengajuan', $post['id_pengajuan']);
+        $this->db->update('tbl_pengajuan', $array);
     }
 }

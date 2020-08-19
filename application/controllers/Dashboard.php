@@ -15,6 +15,8 @@ class Dashboard extends CI_Controller
 		cek_tidak_login();
 		$data['total_paket'] = $this->dashboard_m->getPaket();
 		$data['total_pengguna'] = $this->dashboard_m->getPengguna();
+		$data['total_pengajuan'] = $this->dashboard_m->getPengajuan();
+
 		$this->template->load('template', 'dashboard', $data);
 	}
 }

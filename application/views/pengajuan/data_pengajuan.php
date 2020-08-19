@@ -39,12 +39,12 @@
                                                 <tr>
                                                     <?php if ($this->fungsi->user_login()->level == 3) { ?>
                                                         <th>#</th>
-                                                        <th width="15%">Tanggal</th>
-                                                        <th width="130px">Kode Pengajuan</th>
-                                                        <th width="130px">Pengguna</th>
+                                                        <th width="10%">Tanggal</th>
+                                                        <th width="17%">Kode Pengajuan</th>
+                                                        <th width="25%">Nama Pengguna</th>
                                                         <th>Status</th>
-                                                        <th width="190px">Keterangan</th>
-                                                        <th width="190px">Aksi</th>
+                                                        <th width="25%">Keterangan</th>
+                                                        <th width="10%">Aksi</th>
                                                     <?php } else { ?>
                                                         <th>#</th>
                                                         <th width="11%">Tanggal</th>
@@ -81,9 +81,7 @@
                                                         <td><?= $data->keterangan ?></td>
                                                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
-                                                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalRespon">
-                                                                    <i class="fa fa-reply-all"></i> Respon
-                                                                </button>
+                                                                <a href="<?= site_url('pengajuan/respon/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-success"><i class="fa fa-reply-all"></i> Respon</a>
                                                                 <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
                                                             </td>
                                                         <?php } else { ?>
@@ -105,15 +103,26 @@
                                         <table class="table table-bordered table-striped table-responsive" id="Table2">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Kode Pengajuan</th>
-                                                    <th>Pengguna</th>
-                                                    <th>Konten</th>
-                                                    <th>Paket</th>
-                                                    <th>Status</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Aksi</th>
+                                                    <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                                                        <th>#</th>
+                                                        <th width="10%">Tanggal</th>
+                                                        <th width="17%">Kode Pengajuan</th>
+                                                        <th width="20%">Nama Pengguna</th>
+                                                        <th>Status</th>
+                                                        <th width="25%">Keterangan</th>
+                                                        <th>Diterima</th>
+                                                        <th width="10%">Aksi</th>
+                                                    <?php } else { ?>
+                                                        <th>#</th>
+                                                        <th width="11%">Tanggal</th>
+                                                        <th width="20%">Kode Pengajuan</th>
+                                                        <th width="18%">Nama Pengguna</th>
+                                                        <th width="10%">Status</th>
+                                                        <th width="22%">Keterangan</th>
+                                                    <?php } ?>
+                                                    <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                        <th width="20%">Aksi</th>
+                                                    <?php } ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -122,15 +131,9 @@
                                                 foreach ($pengajuan_terima as $data) { ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= date('d F Y', strtotime($data->tanggal)) ?></td>
+                                                        <td><?= date('d-m-Y', strtotime($data->tanggal)) ?></td>
                                                         <td><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
-                                                        <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
                                                         <td>
                                                             <?php
                                                             if ($data->status == "Pending") {
@@ -143,10 +146,17 @@
                                                             ?>
                                                         </td>
                                                         <td><?= $data->keterangan ?></td>
-                                                        <td class="text-center">
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
-                                                        </td>
+                                                        <td><?= date('d-m-Y', strtotime($data->update_pada)) ?></td>
+                                                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
+                                                                <a href="<?= site_url('pengajuan/hapus/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                                                            </td>
+                                                        <?php } else { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
+                                                            </td>
+                                                        <?php } ?>
                                                     </tr>
                                             </tbody>
                                         <?php
@@ -162,15 +172,26 @@
                                         <table class="table table-bordered table-striped table-responsive" id="Table3">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Kode Pengajuan</th>
-                                                    <th>Pengguna</th>
-                                                    <th>Konten</th>
-                                                    <th>Paket</th>
-                                                    <th>Status</th>
-                                                    <th>Keterangan</th>
-                                                    <th>Aksi</th>
+                                                    <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                                                        <th>#</th>
+                                                        <th width="10%">Tanggal</th>
+                                                        <th width="17%">Kode Pengajuan</th>
+                                                        <th width="20%">Nama Pengguna</th>
+                                                        <th>Status</th>
+                                                        <th width="25%">Keterangan</th>
+                                                        <th>Ditolak</th>
+                                                        <th width="10%">Aksi</th>
+                                                    <?php } else { ?>
+                                                        <th>#</th>
+                                                        <th width="11%">Tanggal</th>
+                                                        <th width="20%">Kode Pengajuan</th>
+                                                        <th width="18%">Nama Pengguna</th>
+                                                        <th width="10%">Status</th>
+                                                        <th width="22%">Keterangan</th>
+                                                    <?php } ?>
+                                                    <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                        <th width="20%">Aksi</th>
+                                                    <?php } ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -179,7 +200,7 @@
                                                 foreach ($pengajuan_tolak as $data) { ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= date('d F Y', strtotime($data->tanggal)) ?></td>
+                                                        <td><?= date('d-m-Y', strtotime($data->tanggal)) ?></td>
                                                         <td><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
                                                         <td>
@@ -200,10 +221,17 @@
                                                             ?>
                                                         </td>
                                                         <td><?= $data->keterangan ?></td>
-                                                        <td class="text-center">
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
-                                                        </td>
+                                                        <td><?= date('d-m-Y', strtotime($data->update_pada)) ?></td>
+                                                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
+                                                                <a href="<?= site_url('pengajuan/hapus/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+                                                            </td>
+                                                        <?php } else { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
+                                                            </td>
+                                                        <?php } ?>
                                                     </tr>
                                             </tbody>
                                         <?php

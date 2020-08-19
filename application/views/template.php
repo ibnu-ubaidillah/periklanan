@@ -248,34 +248,3 @@
 </body>
 
 </html>
-<!-- Modal -->
-<div class="modal fade" id="modalRespon" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Respon Pengajuan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="post">
-          <div class="form-group">
-            <label for="respon">Respon</label>
-            <input type="radio" name="status" id="status" value="Diterima"> Terima
-            <input type="radio" name="status" id="status" value="Ditolak"> Tolak
-          </div>
-          <div class="form-group">
-            <label for="alasan">Keterangan *</label>
-            <textarea name="alasan" id="alasan" cols="5" rows="5" class="form-control"></textarea>
-            <?= form_error('alasan') ?>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-primary">Simpan</button>
-      </div>
-    </div>
-  </div>
-</div>

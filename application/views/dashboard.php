@@ -48,7 +48,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3><?= $total_pengajuan ?></h3>
                   <p>Total Pengajuan</p>
                 </div>
                 <div class="icon">

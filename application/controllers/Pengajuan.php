@@ -17,8 +17,8 @@ class Pengajuan extends CI_Controller
         $id = $this->fungsi->user_login()->id_pengguna;
         $level =  $this->fungsi->user_login()->level;
         $data['pengajuan'] = $this->pengajuan_m->getPengajuan($id, $level);
-        $data['pengajuan_terima'] = $this->pengajuan_m->getPengajuanTerima();
-        $data['pengajuan_tolak'] = $this->pengajuan_m->getPengajuanTolak();
+        $data['pengajuan_terima'] = $this->pengajuan_m->getPengajuanTerima($id, $level);
+        $data['pengajuan_tolak'] = $this->pengajuan_m->getPengajuanTolak($id, $level);
 
         $this->template->load('template', 'pengajuan/data_pengajuan', $data);
     }
@@ -73,20 +73,21 @@ class Pengajuan extends CI_Controller
         $this->template->load('template', 'pengajuan/detail_pengajuan', $data);
     }
 
-    public function respon()
+    public function respon($id)
     {
         $this->form_validation->set_rules('alasan', 'Keterangan', 'required');
         $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
 
         if ($this->form_validation->run() == FALSE) {
-            $this->template->load('template', 'pengajuan/data_pengajuan');
+            $data['pengajuan'] = $this->pengajuan_m->getDetailPengajuan($id);
+            $this->template->load('template', 'pengajuan/respon_pengajuan', $data);
         } else {
             $post = $this->input->post(null, TRUE);
             $this->pengajuan_m->respon($post);
 
             if ($this->db->affected_rows() > 0) {
                 echo "<script>
-                alert('Data berhasil disimpan');
+                alert('Respon berhasil');
                 window.location='" . site_url('pengajuan') . "';
               </script>";
             }

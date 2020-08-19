@@ -24,4 +24,14 @@ class Dashboard_m extends CI_Model
             return 0;
         }
     }
+
+    public function getPengajuan()
+    {
+        $query = $this->db->get('tbl_pengajuan');
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
 }
