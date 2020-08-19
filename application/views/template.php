@@ -244,47 +244,6 @@
         "autoWidth": false,
       });
     });
-    $(document).ready(function() {
-      $('#paket_utama').change(function() {
-        var id = $(this).val();
-        $.ajax({
-          url: "<?= base_url('pengajuan/getDetailPaket') ?>",
-          method: "POST",
-          data: {
-            id: id
-          },
-          async: false,
-          dataType: 'json',
-          success: function(data) {
-            var html = '';
-            var i;
-            for (i = 0; i < data.length; i++) {
-              html += '<option value="+ data[i].id_tipepaket +">' + data[i].tipe_paket + '</option>';
-            }
-            $('.tipePaket').html(html);
-
-          }
-        });
-        $.ajax({
-          url: "<?= base_url('pengajuan/getJmlTayang') ?>",
-          method: "POST",
-          data: {
-            id: id
-          },
-          async: false,
-          dataType: 'json',
-          success: function(data) {
-            var html = '';
-            var i;
-            for (i = 0; i < data.length; i++) {
-              html += '<option value="+ data[i].jumlah_tayang +">' + data[i].jumlah_tayang + '</option>';
-            }
-            $('.jmlTayang').html(html);
-
-          }
-        });
-      });
-    });
   </script>
 </body>
 

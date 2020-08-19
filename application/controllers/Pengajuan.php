@@ -25,8 +25,8 @@ class Pengajuan extends CI_Controller
 
     public function tambah()
     {
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|max_length[15]');
-        $this->form_validation->set_rules('level', 'Level', 'required');
+        $this->form_validation->set_rules('konten', 'Konten', 'required');
+        $this->form_validation->set_rules('caption', 'Caption', 'required');
 
         $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
 
@@ -36,11 +36,12 @@ class Pengajuan extends CI_Controller
             $kodePengajuanSekarang = $nourut + 1;
 
             $data['kode_pengajuan'] = $kodePengajuanSekarang;
-            $data['paket'] = $this->pengajuan_m->getPaket();
+            $data['detail'] = $this->pengajuan_m->detailPaket();
+
             $this->template->load('template', 'pengajuan/tambah_pengajuan', $data);
         } else {
             $post = $this->input->post(null, TRUE);
-            $this->pengguna_m->tambah($post);
+            $this->pengajuan_m->tambah($post);
 
             if ($this->db->affected_rows() > 0) {
                 echo "<script>
@@ -49,19 +50,5 @@ class Pengajuan extends CI_Controller
           </script>";
             }
         }
-    }
-
-    public function getDetailPaket()
-    {
-        $id = $this->input->post('id');
-        $data = $this->pengajuan_m->getDetailPaket($id);
-        echo json_encode($data);
-    }
-
-    public function getJmlTayang()
-    {
-        $id = $this->input->post('id');
-        $data = $this->pengajuan_m->getJmlTayang($id);
-        echo json_encode($data);
     }
 }

@@ -36,6 +36,7 @@
                                 <input type="text" name="kode_pengajuan" value="KP<?= sprintf("%04s", $kode_pengajuan) ?>" id="kode_pengajuan" class="form-control" readonly />
                             </div>
                             <div class="form-group">
+                                <input type="hidden" name="id_pengguna" value=" <?= $this->fungsi->user_login()->id_pengguna ?>">
                                 <label for="nama">Nama Pengguna *</label>
                                 <input type="text" name="nama" value=" <?= $this->fungsi->user_login()->nama ?>" id="nama" class="form-control" readonly />
                             </div>
@@ -49,34 +50,42 @@
                                 <?= form_error('caption') ?>
                             </div>
                             <div class="form-group">
-                                <label for="paket_utama">Daftar Paket</label>
-                                <select name="paketutama" id="paket_utama" class="form-control">
-                                    <option value=""></option>
-                                    <?php foreach ($paket as $row) : ?>
-                                        <option value="<?php echo $row->id_paket; ?>"><?php echo $row->nama_paket; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tipe_paket">Tipe Paket</label>
-                                <select name="tipe_paket" class="tipePaket form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="jml_tayang">Jumlah Penayangan</label>
-                                <select name="jml_tayang" class="jmlTayang form-control">
-                                    <option value=""></option>
-                                </select>
+                                <label for="id_detail">Daftar Paket</label>
+                                <div class="row">
+                                    <?php
+                                    $no = 1;
+                                    foreach ($detail as $det) {  ?>
+                                        <div class="col-sm-6 pb-3">
+                                            <div class="card border-primary">
+                                                <h6 class="card-header"> <?= $det->nama_paket ?></h6>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"> Paket <?= $det->tipe_paket ?></h5>
+                                                    <p class="card-text">
+                                                        <li>
+                                                            Penayangan Iklan <?= $det->jumlah_tayang ?>x
+                                                        </li>
+                                                        <li>
+                                                            Harga Total : <?= number_format($det->harga, 0, ".", ".") ?>
+                                                        </li>
+                                                    </p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <input type="radio" name="id_detail" value="<?= $det->id_detail ?>" id="id_detail" /> Paket <?= $no++ ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Simpan</button>
                                 <button type="reset" class="btn btn-default btn-flat"><i class="fa fa-reset"></i> Reset</button>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
+        </div>
         </div>
 
     </section>

@@ -67,7 +67,7 @@
                                                 foreach ($pengajuan as $data) { ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
-                                                        <td><?= tgl_indo(date('Y-m-d')) ?></td>
+                                                        <td><?= date('d-m-Y', strtotime($data->tanggal)); ?></td>
                                                         <td width="100px"><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
                                                         <td>

@@ -33,7 +33,6 @@ class Pengajuan_m extends CI_Model
         }
     }
 
-
     public function getPengajuanTerima()
     {
         $this->db->select('*');
@@ -62,34 +61,46 @@ class Pengajuan_m extends CI_Model
         return $query;
     }
 
-    public function getPaket()
-    {
-        $this->db->select('*');
-        $this->db->from('tbl_paket');
-        $this->db->join('tbl_detailpaket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
-        $this->db->where('tbl_detailpaket.id_paket = tbl_paket.id_paket');
-        $this->db->group_by('tbl_paket.id_paket');
-
-        $query = $this->db->get()->result();
-        return $query;
-    }
-
-    public function getDetailPaket($id)
-    {
-        $hasil = $this->db->query("SELECT * FROM tbl_detailpaket a JOIN tbl_tipepaket b ON tbl_detailpaket.id_tipepaket = tbl_tipepaket.id_tipepaket WHERE id_paket='$id'");
-        return $hasil->result();
-    }
-
-    public function getJmlTayang($id)
-    {
-        $hasil = $this->db->query("SELECT jumlah_tayang FROM tbl_detailpaket WHERE id_tipepaket='$id' GROUP BY id_tipepaket");
-        return $hasil->result();
-    }
-
     public function generateKodePengajuan()
     {
         $query = $this->db->query("SELECT MAX(kode_pengajuan) AS kodepengajuan FROM tbl_pengajuan");
         $hasil = $query->row();
         return $hasil->kodepengajuan;
+    }
+
+    public function tambah($post)
+    {
+        $array['kode_pengajuan'] = $post['kode_pengajuan'];
+        $array['id_pengguna'] = $post['id_pengguna'];
+        $array['id_paket'] = $post['paket_utama'];
+        $array['id_detail'] = $post['tipe_paket'];
+    }
+
+    private function _uploadImage()
+    {
+        $config['upload_path']          = './uploads/konten/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['encrypt_name']         = true;
+        $config['overwrite']            = true;
+        $config['max_width']            = 2048;
+        $config['max_height']           = 1000;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            return $this->upload->data("file_name");
+        }
+    }
+
+    public function detailPaket()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_paket');
+        $this->db->join('tbl_detailpaket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
+        $this->db->join('tbl_tipepaket', 'tbl_tipepaket.id_tipepaket = tbl_detailpaket.id_tipepaket');
+        $this->db->order_by('tbl_paket.id_paket');
+
+        $query = $this->db->get()->result();
+        return $query;
     }
 }
