@@ -12,7 +12,7 @@
                     </ol>
                 </div>
             </div>
-            <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 939px;"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
+            <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 86.6%"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
         </div>
         <!-- /.container-fluid -->
     </section>
@@ -39,22 +39,19 @@
                                                 <tr>
                                                     <?php if ($this->fungsi->user_login()->level == 3) { ?>
                                                         <th>#</th>
-                                                        <th width="90px">Tanggal</th>
+                                                        <th width="15%">Tanggal</th>
                                                         <th width="130px">Kode Pengajuan</th>
                                                         <th width="130px">Pengguna</th>
-                                                        <th>Konten</th>
-                                                        <th width="50px">Paket</th>
                                                         <th>Status</th>
                                                         <th width="190px">Keterangan</th>
+                                                        <th width="190px">Aksi</th>
                                                     <?php } else { ?>
                                                         <th>#</th>
                                                         <th>Tanggal</th>
-                                                        <th>Kode Pengajuan</th>
-                                                        <th>Pengguna</th>
-                                                        <th>Konten</th>
-                                                        <th>Paket</th>
+                                                        <th width="20%">Kode Pengajuan</th>
+                                                        <th width="16%">Nama Pengguna</th>
                                                         <th>Status</th>
-                                                        <th>Keterangan</th>
+                                                        <th width="22%">Keterangan</th>
                                                     <?php } ?>
                                                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                         <th>Aksi</th>
@@ -71,12 +68,6 @@
                                                         <td width="100px"><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
                                                         <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
-                                                        <td>
                                                             <?php
                                                             if ($data->status == "Pending") {
                                                                 echo "<span class='badge badge-primary'>Pending</span>";
@@ -90,8 +81,13 @@
                                                         <td><?= $data->keterangan ?></td>
                                                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
-                                                                <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Terima</a>
-                                                                <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
+                                                                <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-xs btn-success"><i class="fa fa-check"></i> Terima</a>
+                                                                <button class="btn btn-xs btn-danger" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-times"></i> Tolak</button>
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
+                                                            </td>
+                                                        <?php } else { ?>
+                                                            <td class="text-center">
+                                                                <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
                                                             </td>
                                                         <?php } ?>
                                                     </tr>

@@ -25,7 +25,6 @@ class Pengajuan extends CI_Controller
 
     public function tambah()
     {
-        $this->form_validation->set_rules('konten', 'Konten', 'required');
         $this->form_validation->set_rules('caption', 'Caption', 'required');
 
         $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
@@ -40,15 +39,37 @@ class Pengajuan extends CI_Controller
 
             $this->template->load('template', 'pengajuan/tambah_pengajuan', $data);
         } else {
-            $post = $this->input->post(null, TRUE);
-            $this->pengajuan_m->tambah($post);
 
-            if ($this->db->affected_rows() > 0) {
-                echo "<script>
-            alert('Data berhasil disimpan');
-            window.location='" . site_url('pengajuan') . "';
-          </script>";
+            $post = $this->input->post(null, TRUE);
+
+            $config['upload_path']          = './uploads/konten/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['file_name']            = 'konten-' . date('dmY') . '-' . substr(md5(rand()), 0, 10);
+            $config['overwrite']            = true;
+            $config['max_width']            = 2048;
+            $config['max_height']           = 1000;
+
+            $this->load->library('upload', $config);
+
+            if (@$_FILES['konten']['name'] != null) {
+
+                if ($this->upload->do_upload('konten')) {
+                    $post['konten'] = $this->upload->data("file_name");
+                    $this->pengajuan_m->tambah($post);
+                }
+                if ($this->db->affected_rows() > 0) {
+                    echo "<script>
+                alert('Data berhasil disimpan');
+                window.location='" . site_url('pengajuan') . "';
+              </script>";
+                }
             }
         }
+    }
+
+    public function detail($id)
+    {
+        $data['pengajuan'] = $this->pengajuan_m->getDetailPengajuan($id);
+        $this->template->load('template', 'pengajuan/detail_pengajuan', $data);
     }
 }

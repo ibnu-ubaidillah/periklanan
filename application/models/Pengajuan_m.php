@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Pengajuan_m extends CI_Model
 {
-    var $tabel = "tbl_pengajuan";
 
     public function getPengajuan($id, $level)
     {
@@ -11,7 +10,6 @@ class Pengajuan_m extends CI_Model
             $this->db->select('*');
             $this->db->from('tbl_pengajuan');
             $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-            $this->db->join('tbl_paket', 'tbl_pengajuan.id_paket = tbl_paket.id_paket');
             $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
             $this->db->where('tbl_pengajuan.status', 'Pending');
             $this->db->where('tbl_pengajuan.id_pengguna', $id);
@@ -23,7 +21,6 @@ class Pengajuan_m extends CI_Model
             $this->db->select('*');
             $this->db->from('tbl_pengajuan');
             $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-            $this->db->join('tbl_paket', 'tbl_pengajuan.id_paket = tbl_paket.id_paket');
             $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
             $this->db->where('tbl_pengajuan.status', 'Pending');
             $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
@@ -38,7 +35,6 @@ class Pengajuan_m extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_pengajuan');
         $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-        $this->db->join('tbl_paket', 'tbl_pengajuan.id_paket = tbl_paket.id_paket');
         $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
         $this->db->where('tbl_pengajuan.status', 'Diterima');
         $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
@@ -52,7 +48,6 @@ class Pengajuan_m extends CI_Model
         $this->db->select('*');
         $this->db->from('tbl_pengajuan');
         $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
-        $this->db->join('tbl_paket', 'tbl_pengajuan.id_paket = tbl_paket.id_paket');
         $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
         $this->db->where('tbl_pengajuan.status', 'Ditolak');
         $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
@@ -72,24 +67,13 @@ class Pengajuan_m extends CI_Model
     {
         $array['kode_pengajuan'] = $post['kode_pengajuan'];
         $array['id_pengguna'] = $post['id_pengguna'];
-        $array['id_paket'] = $post['paket_utama'];
-        $array['id_detail'] = $post['tipe_paket'];
-    }
+        $array['konten'] = $post['konten'];
+        $array['caption'] = $post['caption'];
+        $array['id_detail'] = $post['id_detail'];
+        $array['tanggal'] = date('Ymd');
+        $array['keterangan'] = '-';
 
-    private function _uploadImage()
-    {
-        $config['upload_path']          = './uploads/konten/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
-        $config['encrypt_name']         = true;
-        $config['overwrite']            = true;
-        $config['max_width']            = 2048;
-        $config['max_height']           = 1000;
-
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('image')) {
-            return $this->upload->data("file_name");
-        }
+        $this->db->insert('tbl_pengajuan', $array);
     }
 
     public function detailPaket()
@@ -99,6 +83,20 @@ class Pengajuan_m extends CI_Model
         $this->db->join('tbl_detailpaket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
         $this->db->join('tbl_tipepaket', 'tbl_tipepaket.id_tipepaket = tbl_detailpaket.id_tipepaket');
         $this->db->order_by('tbl_paket.id_paket');
+
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
+    public function getDetailPengajuan($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_pengajuan');
+        $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+        $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+        $this->db->join('tbl_paket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
+        $this->db->join('tbl_tipepaket', 'tbl_detailpaket.id_tipepaket = tbl_tipepaket.id_tipepaket');
+        $this->db->where('tbl_pengajuan.id_pengajuan', $id);
 
         $query = $this->db->get()->result();
         return $query;

@@ -31,32 +31,32 @@
                     <div class="col-md-6 offset-3">
                         <!-- <?= validation_errors(); ?> -->
                         <form action="" method="POST" enctype="multipart/form-data">
-                            <div class="form-group has-error">
+                            <div class="form-group">
                                 <label for="kode_pengajuan">Kode Pengajuan</label>
                                 <input type="text" name="kode_pengajuan" value="KP<?= sprintf("%04s", $kode_pengajuan) ?>" id="kode_pengajuan" class="form-control" readonly />
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="id_pengguna" value=" <?= $this->fungsi->user_login()->id_pengguna ?>">
-                                <label for="nama">Nama Pengguna *</label>
+                                <label for="nama">Nama Pengguna</label>
                                 <input type="text" name="nama" value=" <?= $this->fungsi->user_login()->nama ?>" id="nama" class="form-control" readonly />
                             </div>
                             <div class="form-group">
-                                <label for="konten">Konten</label>
-                                <input type="file" name="konten" id="konten" class="form-control">
+                                <label for="konten">Konten*</label>
+                                <input type="file" name="konten" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="alamat">Caption *</label>
+                                <label for="alamat">Caption*</label>
                                 <textarea name="caption" id="caption" cols="30" rows="5" class="form-control" autofocus> <?= set_value('caption') ?></textarea>
                                 <?= form_error('caption') ?>
                             </div>
                             <div class="form-group">
-                                <label for="id_detail">Daftar Paket</label>
+                                <label for="id_detail">Daftar Paket*</label>
                                 <div class="row">
                                     <?php
                                     $no = 1;
                                     foreach ($detail as $det) {  ?>
-                                        <div class="col-sm-6 pb-3">
-                                            <div class="card border-primary">
+                                        <div class="col-sm-6">
+                                            <div class="card card-blue border-primary">
                                                 <h6 class="card-header"> <?= $det->nama_paket ?></h6>
                                                 <div class="card-body">
                                                     <h5 class="card-title"> Paket <?= $det->tipe_paket ?></h5>
@@ -70,7 +70,9 @@
                                                     </p>
                                                 </div>
                                                 <div class="card-footer">
-                                                    <input type="radio" name="id_detail" value="<?= $det->id_detail ?>" id="id_detail" /> Paket <?= $no++ ?>
+                                                    <center>
+                                                        <input type="radio" name="id_detail" value="<?= $det->id_detail ?>" id="id_detail" /> Paket <?= $no++ ?>
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
