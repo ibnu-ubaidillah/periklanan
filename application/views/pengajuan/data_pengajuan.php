@@ -12,7 +12,9 @@
                     </ol>
                 </div>
             </div>
-            <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 86.4%"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
+            <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 86.4%"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
+            <?php } ?>
         </div>
         <!-- /.container-fluid -->
     </section>

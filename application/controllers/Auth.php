@@ -95,7 +95,7 @@ class Auth extends CI_Controller
         $data['aktif'] = 1;
 
         $this->db->insert('tbl_pengguna', $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Selamat!</strong> Akun anda berhasil dibuat, silahkan login.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

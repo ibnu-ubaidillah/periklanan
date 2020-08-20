@@ -48,6 +48,7 @@
                                         <option value="<?= $data->id_pengajuan ?>"><?= $data->kode_pengajuan ?></option>
                                     <?php } ?>
                                 </select>
+                                <?= form_error('id_pengajuan') ?>
                             </div>
                             <div class="form-group">
                                 <label for="id_detail">Daftar Rekening*</label>
@@ -77,6 +78,7 @@
                                         </div>
                                     <?php } ?>
                                 </div>
+                                <?= form_error('id_rekening') ?>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Lanjutkan</button>
