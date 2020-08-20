@@ -83,7 +83,7 @@
             <?php if ($this->fungsi->user_login()->level == 1 || $this->fungsi->user_login()->level == 3) { ?>
               <li class="nav-item has-treeview">
                 <a href="<?= base_url('pengajuan') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengajuan' ? 'active' : '' ?>">
-                  <i class="nav-icon fas fa-book"></i>
+                  <i class="nav-icon fas fa-clipboard-list"></i>
                   <p>
                     <?php if ($this->fungsi->user_login()->level == 3) { ?>
                       Pengajuan Iklan
@@ -155,6 +155,14 @@
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                       Kelola Pengguna
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item has-treeview">
+                  <a href="<?= base_url('rekening') ?>" class="nav-link <?= $this->uri->segment(1) == 'rekening' ? 'active' : '' ?>">
+                    <i class="nav-icon fas fa-credit-card"></i>
+                    <p>
+                      Kelola Rekening
                     </p>
                   </a>
                 </li>
