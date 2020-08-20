@@ -12,7 +12,8 @@
                     </ol>
                 </div>
             </div>
-            <a href="<?= site_url('pembayaran/tambah/' . $id = $this->fungsi->user_login()->id_pengguna) ?>" class="btn btn-sm btn-primary" style="margin-left: 85.5%"><i class="fa fa-plus"></i> Tambah Pembayaran</a>
+            <?php $id = $this->fungsi->user_login()->id_pengguna; ?>
+            <a href="<?= site_url('pembayaran/tambah/' . $id) ?>" class="btn btn-sm btn-primary" style="margin-left: 85.5%"><i class="fa fa-plus"></i> Tambah Pembayaran</a>
         </div>
         <!-- /.container-fluid -->
     </section>

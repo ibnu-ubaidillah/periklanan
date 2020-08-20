@@ -136,13 +136,14 @@ class Pembayaran_m extends CI_Model
         $this->db->update('tbl_pengajuan', $array);
     }
 
-    public function getAllPembayaran($id)
+    public function getAllPengajuanById($id)
     {
         $this->db->select('*');
         $this->db->from('tbl_pengajuan');
         $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
         $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
-        $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+        $this->db->where('tbl_pengajuan.id_pengguna', $id);
+        $this->db->where('tbl_pengajuan.status', 'Diterima');
 
         $query = $this->db->get()->result();
         return $query;

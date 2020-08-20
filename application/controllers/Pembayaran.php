@@ -37,9 +37,9 @@ class Pembayaran extends CI_Controller
             $kodePembayaranSekarang = $nourut + 1;
 
             $data['kode_pembayaran'] = $kodePembayaranSekarang;
-            $data['pembayaran'] = $this->pembayaran_m->getAllPembayaran($id);
+            $data['pengajuan'] = $this->pembayaran_m->getAllPengajuanById($id);
 
-            $this->template->load('template', 'pengajuan/tambah_pembayaran', $data);
+            $this->template->load('template', 'pembayaran/tambah_pembayaran', $data);
         } else {
 
             $post = $this->input->post(null, TRUE);

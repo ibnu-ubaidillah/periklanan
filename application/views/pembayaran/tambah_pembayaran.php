@@ -33,7 +33,7 @@
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="kode_pengajuan">Kode Pembayaran</label>
-                                <input type="text" name="kode_pembayaran" value="BYR<?= sprintf("%04s", $kode_pembayaran) ?>" id="kode_pembayaran" class="form-control" readonly />
+                                <input type="text" name="kode_pembayaran" value="KB<?= sprintf("%04s", $kode_pembayaran) ?>" id="kode_pembayaran" class="form-control" readonly />
                             </div>
                             <div class="form-group">
                                 <input type="hidden" name="id_pengguna" value=" <?= $this->fungsi->user_login()->id_pengguna ?>">
@@ -41,12 +41,23 @@
                                 <input type="text" name="nama" value=" <?= $this->fungsi->user_login()->nama ?>" id="nama" class="form-control" readonly />
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Simpan</button>
+                                <label for="id_pengajuan">Kode Pengajuan</label>
+                                <select name="id_pengajuan" class="form-control">
+                                    <option value=""> - Kode Pengajuan Anda - </option>
+                                    <?php foreach ($pengajuan as $data) { ?>
+                                        <option value="<?= $data->id_pengajuan ?>"><?= $data->kode_pengajuan ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Lanjutkan</button>
                                 <button type="reset" class="btn btn-default btn-flat"><i class="fa fa-reset"></i> Reset</button>
                             </div>
+                            <strong>Note* </strong><small>Pengajuan harus diterima terlebih dahulu jika ingin melakukan pembayaran.</small>
                     </div>
                     </form>
                 </div>
+
             </div>
         </div>
         </div>
