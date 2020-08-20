@@ -107,7 +107,7 @@
               </li>
               <?php if ($this->fungsi->user_login()->level == 1 || $this->fungsi->user_login()->level == 3) { ?>
                 <li class="nav-item has-treeview">
-                  <a href="#" class="nav-link">
+                  <a href="<?= base_url('jadwal') ?>" class="nav-link">
                     <i class="nav-icon fa fa-calendar-alt"></i>
                     <p>
                       <?php if ($this->fungsi->user_login()->level == 3) { ?>
@@ -221,7 +221,7 @@
 
     <footer class="main-footer">
       <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.1.0-pre
+        <b>Version</b> 1.0
       </div>
       <strong>Copyright &copy; 2020 <a href="http://aboutcirebon.id" target="_blank">AboutCirebon</a>.</strong> built with <i class="fa fa-heart" style="color: red"></i>
   </div>

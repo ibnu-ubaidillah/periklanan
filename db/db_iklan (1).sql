@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2020 at 04:46 PM
+-- Generation Time: Aug 20, 2020 at 06:44 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -59,10 +59,18 @@ INSERT INTO `tbl_detailpaket` (`id_detail`, `id_paket`, `id_tipepaket`, `jumlah_
 CREATE TABLE `tbl_jadwal` (
   `id_jadwal` int(11) NOT NULL,
   `id_pembayaran` int(11) NOT NULL,
-  `id_pengajuan` int(11) NOT NULL,
-  `tanggal` int(11) NOT NULL,
-  `jam` varchar(10) NOT NULL
+  `tanggal_tayang` varchar(25) NOT NULL,
+  `jam` varchar(25) NOT NULL,
+  `keterangan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_jadwal`
+--
+
+INSERT INTO `tbl_jadwal` (`id_jadwal`, `id_pembayaran`, `tanggal_tayang`, `jam`, `keterangan`) VALUES
+(1, 3, '2020', '07:30', 'Mantapp'),
+(2, 6, '2020-08-21', '20:34', 'Waktu yang pas.');
 
 -- --------------------------------------------------------
 
@@ -108,8 +116,8 @@ CREATE TABLE `tbl_pembayaran` (
 --
 
 INSERT INTO `tbl_pembayaran` (`id_pembayaran`, `id_pengajuan`, `id_pengguna`, `id_rekening`, `kode_pembayaran`, `invoice`, `bukti_pembayaran`, `tanggal`, `status_p`, `tgl_terakhir`) VALUES
-(2, 4, 1, 2, 'KB0001', '', '', 20200820, 'Belum Lunas', '2020-08-20 10:41:16'),
-(3, 6, 2, 1, 'KB0002', 'AC2008200001', 'bukti-20082020-b242d74239.jpg', 20200820, 'Lunas', '2020-08-20 10:58:49');
+(3, 6, 2, 1, 'KB0002', 'AC2008200001', 'bukti-20082020-b242d74239.jpg', 20200820, 'Lunas', '2020-08-20 10:58:49'),
+(6, 9, 6, 2, 'KB0003', 'AC2008200002', 'bukti-20082020-7c6fbb0b47.jpg', 20200820, 'Lunas', '2020-08-20 15:17:00');
 
 -- --------------------------------------------------------
 
@@ -137,10 +145,13 @@ CREATE TABLE `tbl_pengajuan` (
 INSERT INTO `tbl_pengajuan` (`id_pengajuan`, `kode_pengajuan`, `id_pengguna`, `id_detail`, `konten`, `caption`, `tanggal`, `status`, `keterangan`, `update_pada`) VALUES
 (1, 'KP0001', 6, 1, 'IMAGE.jpg', 'Ini adalah caption', 20200817, 'Diterima', 'Bagus sekaliii', '2020-08-19 17:09:34'),
 (2, 'KP0002', 1, 6, 'konten-19082020-655d2bde15.jpg', '6', 19, 'Ditolak', 'Iklan kamu mengandung sar', '2020-08-19 17:09:34'),
-(3, 'KP0003', 1, 3, 'konten-19082020-78653ab31d.jpg', '3', 19082020, 'Pending', '-', '2020-08-19 17:09:34'),
+(3, 'KP0003', 1, 3, 'konten-19082020-78653ab31d.jpg', '3', 19082020, 'Ditolak', 'adasdas', '2020-08-19 17:09:34'),
 (4, 'KP0004', 1, 3, 'konten-19082020-24257456c1.jpg', ' asddgdsghsgs', 20200819, 'Diterima', 'Ini sangat bagus sekalii', '2020-08-19 17:09:34'),
 (5, 'KP0005', 2, 5, 'konten-19082020-290a2863cc.jpg', ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi necessitatibus suscipit saepe eum eaque consequatur autem in pariatur praesentium. Distinctio rem illum excepturi laborum dicta molestiae? Explicabo eaque ullam omnis.', 20200819, 'Ditolak', 'Iklan kamu mengandung Provokasiii ! silahkan ganti', '2020-08-19 17:09:34'),
-(6, 'KP0006', 2, 7, 'konten-20082020-6218ad4aa1.jpg', ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ab deleniti alias id, magni impedit praesentium placeat aut dolorem voluptatem exercitationem, quod incidunt pariatur possimus quidem! Ipsam illum soluta quis!\r\n    }', 20200820, 'Diterima', 'Sangat bagus sekali', '2020-08-20 07:05:11');
+(6, 'KP0006', 2, 7, 'konten-20082020-6218ad4aa1.jpg', ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ab deleniti alias id, magni impedit praesentium placeat aut dolorem voluptatem exercitationem, quod incidunt pariatur possimus quidem! Ipsam illum soluta quis!\r\n    }', 20200820, 'Diterima', 'Sangat bagus sekali', '2020-08-20 07:05:11'),
+(7, 'KP0007', 1, 5, 'konten-20082020-61d31c7533.jpg', ' zvnfgmghjf', 20200820, 'Pending', '-', '2020-08-20 15:04:52'),
+(8, 'KP0008', 1, 3, 'konten-20082020-32cb534a84.jpg', ' kgjgtgut', 20200820, 'Pending', '-', '2020-08-20 15:05:11'),
+(9, 'KP0009', 6, 3, 'konten-20082020-611d5dab2c.jpg', ' dbfn bcvbcvb', 20200820, 'Diterima', 'Iklannya menarik', '2020-08-20 15:16:06');
 
 -- --------------------------------------------------------
 
@@ -227,6 +238,12 @@ ALTER TABLE `tbl_detailpaket`
   ADD PRIMARY KEY (`id_detail`);
 
 --
+-- Indexes for table `tbl_jadwal`
+--
+ALTER TABLE `tbl_jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
+
+--
 -- Indexes for table `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
@@ -273,6 +290,12 @@ ALTER TABLE `tbl_detailpaket`
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `tbl_jadwal`
+--
+ALTER TABLE `tbl_jadwal`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_paket`
 --
 ALTER TABLE `tbl_paket`
@@ -282,13 +305,13 @@ ALTER TABLE `tbl_paket`
 -- AUTO_INCREMENT for table `tbl_pembayaran`
 --
 ALTER TABLE `tbl_pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_pengajuan`
 --
 ALTER TABLE `tbl_pengajuan`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_pengguna`
