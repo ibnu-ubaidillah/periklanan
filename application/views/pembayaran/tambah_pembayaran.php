@@ -50,6 +50,35 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="id_detail">Daftar Rekening*</label>
+                                <div class="row">
+                                    <?php
+                                    $no = 1;
+                                    foreach ($rekening as $det) {  ?>
+                                        <div class="col-sm-6">
+                                            <div class="card card-blue border-primary">
+                                                <h6 class="card-header"> Rekening <?= $no++ ?></h6>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"> Bank <?= $det->nama_bank ?></h5>
+                                                    <br />
+                                                    <br />
+                                                    <p class="card-text">
+                                                        No. Rekening: <br /><strong><?= $det->no_rekening ?></strong>
+                                                        <br />
+                                                        Atas Nama: <br /><strong><?= $det->atas_nama ?></strong>
+                                                    </p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <center>
+                                                        <input type="radio" name="id_rekening" value="<?= $det->id_rekening ?>" id="id_rekening" /> Pilih
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Lanjutkan</button>
                                 <button type="reset" class="btn btn-default btn-flat"><i class="fa fa-reset"></i> Reset</button>
                             </div>
