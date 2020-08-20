@@ -61,14 +61,14 @@
 
             <strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Dibuat</strong>
 
-            <p class="text-muted"><?= $this->fungsi->user_login()->tanggal_dibuat ?></p>
+            <p class="text-muted"><?= date('d-m-Y', strtotime($this->fungsi->user_login()->tanggal_dibuat)) ?></p>
 
             <hr>
 
             <strong><i class="fas fa-pencil-alt mr-1"></i> Terakhir Diubah</strong>
 
             <p class="text-muted">
-              <?= $this->fungsi->user_login()->terakhir_diubah ?>
+              <?= date('d-m-Y', strtotime($this->fungsi->user_login()->terakhir_diubah)) ?>
             </p>
           </div>
           <!-- /.card-body -->

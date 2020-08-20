@@ -64,7 +64,6 @@ class Pembayaran_m extends CI_Model
         $array['id_rekening'] = $post['id_rekening'];
         $array['kode_pembayaran'] = $post['kode_pembayaran'];
         $array['tanggal'] = date('Ymd');
-        $array['ket'] = '-';
 
         $this->db->insert('tbl_pembayaran', $array);
     }
@@ -161,7 +160,7 @@ class Pembayaran_m extends CI_Model
     {
         $array['invoice'] = $post['invoice'];
         $array['bukti_pembayaran'] = $post['bukti_pembayaran'];
-        $array['status'] = 'Lunas';
+        $array['status_p'] = 'Lunas';
 
         $this->db->where('id_pembayaran', $post['id_pembayaran']);
         $this->db->update('tbl_pembayaran', $array);

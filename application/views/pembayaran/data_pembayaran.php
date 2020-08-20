@@ -39,12 +39,12 @@
                                                 <tr>
                                                     <?php if ($this->fungsi->user_login()->level == 3) { ?>
                                                         <th>#</th>
-                                                        <th width="10%">Tanggal</th>
-                                                        <th width="15%">Kode Pembayaran</th>
-                                                        <th width="10%">Kode Pengajuan</th>
-                                                        <th width="10%">Nama Pengguna</th>
+                                                        <th>Tanggal</th>
+                                                        <th width="20%">Kode Pembayaran</th>
+                                                        <th width="20%">Kode Pengajuan</th>
+                                                        <th>Nama Pengguna</th>
                                                         <th>Status</th>
-                                                        <th width="14%">Aksi</th>
+                                                        <th width="20%">Aksi</th>
                                                     <?php } else { ?>
                                                         <th>#</th>
                                                         <th width="11%">Tanggal</th>
@@ -79,7 +79,6 @@
                                                         </td>
                                                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
-                                                                <a href="<?= site_url('pembayaran/respon/' . $data->id_pembayaran) ?>" class="btn btn-xs btn-success"><i class="fa fa-reply-all"></i> Respon</a>
                                                                 <a href="<?= site_url('pembayaran/detail/' . $data->id_pembayaran) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
                                                             </td>
                                                         <?php } else { ?>
