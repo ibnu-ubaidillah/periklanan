@@ -94,7 +94,7 @@
                 </a>
               </li>
               <li class="nav-item has-treeview">
-                <a href="#" class="nav-link <?= $this->uri->segment(1) == 'pembayaran' ? 'active' : '' ?>">
+                <a href="<?= base_url('pembayaran') ?>" class="nav-link <?= $this->uri->segment(1) == 'pembayaran' ? 'active' : '' ?>">
                   <i class="nav-icon fas fa-money-check-alt"></i>
                   <p>
                     <?php if ($this->fungsi->user_login()->level == 3) { ?>
