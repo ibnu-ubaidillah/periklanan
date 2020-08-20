@@ -119,6 +119,7 @@
                                                         <th width="18%">Nama Pengguna</th>
                                                         <th width="10%">Status</th>
                                                         <th width="22%">Keterangan</th>
+                                                        <th width="10%">Diterima</th>
                                                     <?php } ?>
                                                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                         <th width="20%">Aksi</th>
@@ -134,7 +135,7 @@
                                                         <td><?= date('d-m-Y', strtotime($data->tanggal)) ?></td>
                                                         <td><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <?php
                                                             if ($data->status == "Pending") {
                                                                 echo "<span class='badge badge-primary'>Pending</span>";
@@ -150,7 +151,6 @@
                                                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
                                                                 <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
-                                                                <a href="<?= site_url('pengajuan/hapus/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                                                             </td>
                                                         <?php } else { ?>
                                                             <td class="text-center">
@@ -188,6 +188,7 @@
                                                         <th width="18%">Nama Pengguna</th>
                                                         <th width="10%">Status</th>
                                                         <th width="22%">Keterangan</th>
+                                                        <th width="10%">Ditolak</th>
                                                     <?php } ?>
                                                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                         <th width="20%">Aksi</th>
@@ -203,13 +204,7 @@
                                                         <td><?= date('d-m-Y', strtotime($data->tanggal)) ?></td>
                                                         <td><?= $data->kode_pengajuan ?></td>
                                                         <td><?= $data->nama ?></td>
-                                                        <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="<?= site_url('pengguna/edit/') ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Lihat</a>
-                                                        </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <?php
                                                             if ($data->status == "Pending") {
                                                                 echo "<span class='badge badge-primary'>Pending</span>";
@@ -225,7 +220,6 @@
                                                         <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
                                                                 <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
-                                                                <a href="<?= site_url('pengajuan/hapus/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                                                             </td>
                                                         <?php } else { ?>
                                                             <td class="text-center">

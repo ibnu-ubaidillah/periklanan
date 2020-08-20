@@ -85,7 +85,11 @@
                 <a href="<?= base_url('pengajuan') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengajuan' ? 'active' : '' ?>">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Kelola Pengajuan Iklan
+                    <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                      Pengajuan Iklan
+                    <?php } else { ?>
+                      Kelola Pengajuan Iklan
+                    <?php } ?>
                   </p>
                 </a>
               </li>
@@ -93,87 +97,99 @@
                 <a href="#" class="nav-link <?= $this->uri->segment(1) == 'pembayaran' ? 'active' : '' ?>">
                   <i class="nav-icon fas fa-money-check-alt"></i>
                   <p>
-                    Kelola Pembayaran Iklan
+                    <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                      Pembayaran Iklan
+                    <?php } else { ?>
+                      Kelola Pembayaran Iklan
+                    <?php } ?>
                   </p>
                 </a>
-                <?php if ($this->fungsi->user_login()->level == 1) { ?>
-              <li class="nav-item has-treeview <?= $this->uri->segment(1) == 'paket' || $this->uri->segment(1) == 'paket_detail' || $this->uri->segment(1) == 'tipe_paket' ? 'menu-open' : '' ?>">
+              </li>
+              <?php if ($this->fungsi->user_login()->level == 1 || $this->fungsi->user_login()->level == 3) { ?>
+                <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-calendar-alt"></i>
+                    <p>
+                      <?php if ($this->fungsi->user_login()->level == 3) { ?>
+                        Jadwal Iklan
+                      <?php } else { ?>
+                        Kelola Jadwal Iklan
+                      <?php } ?>
+                    </p>
+                  </a>
+                </li>
+              <?php } ?>
+              <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                <li class="nav-item has-treeview <?= $this->uri->segment(1) == 'paket' || $this->uri->segment(1) == 'paket_detail' || $this->uri->segment(1) == 'tipe_paket' ? 'menu-open' : '' ?>">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-stream"></i>
+                    <p>
+                      Kelola Paket
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="<?= base_url('paket') ?>" class="nav-link <?= $this->uri->segment(1) == 'paket' ? 'active' : '' ?>">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Paket Utama</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="<?= base_url('paket_detail') ?>" class="nav-link <?= $this->uri->segment(1) == 'paket_detail' ? 'active' : '' ?>">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Paket Detail</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="<?= base_url('tipe_paket') ?>" class="nav-link <?= $this->uri->segment(1) == 'tipe_paket' ? 'active' : '' ?>">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Kategori Paket</p>
+                      </a>
+                    </li>
+                  <?php } ?>
+                  </ul>
+                  <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                <li class="nav-item has-treeview">
+                  <a href="<?= base_url('pengguna') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengguna' ? 'active' : '' ?>">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                      Kelola Pengguna
+                    </p>
+                  </a>
+                </li>
+              <?php } ?>
+            <?php } ?>
+            <?php if ($this->fungsi->user_login()->level == 2) { ?>
+              <li class="nav-item has-treeview <?= $this->uri->segment(2) == 'laporan_pengguna' || $this->uri->segment(2) == 'laporan_pengajuan' || $this->uri->segment(2) == 'laporan_pembayaran' ? 'menu-open' : '' ?>">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fa fa-stream"></i>
+                  <i class="nav-icon fa fa-clipboard-list"></i>
                   <p>
-                    Kelola Paket
+                    Laporan
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="<?= base_url('paket') ?>" class="nav-link <?= $this->uri->segment(1) == 'paket' ? 'active' : '' ?>">
+                    <a href="<?= base_url('laporan/laporan_pengajuan') ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan_pengajuan' ? 'active' : '' ?>">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Paket Utama</p>
+                      <p>Laporan Pengajuan</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?= base_url('paket_detail') ?>" class="nav-link <?= $this->uri->segment(1) == 'paket_detail' ? 'active' : '' ?>">
+                    <a href="<?= base_url('laporan/laporan_pengguna') ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan_pengguna' ? 'active' : '' ?>">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Paket Detail</p>
+                      <p>Laporan Pengguna</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?= base_url('tipe_paket') ?>" class="nav-link <?= $this->uri->segment(1) == 'tipe_paket' ? 'active' : '' ?>">
+                    <a href="../index.html" class="nav-link <?= $this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : '' ?>">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Kategori Paket</p>
+                      <p>Laporan Pembayaran</p>
                     </a>
                   </li>
-                <?php } ?>
                 </ul>
-                <?php if ($this->fungsi->user_login()->level == 1) { ?>
-              <li class="nav-item has-treeview">
-                <a href="<?= base_url('pengguna') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengguna' ? 'active' : '' ?>">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Kelola Pengguna
-                  </p>
-                </a>
               </li>
-              <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fa fa-calendar-alt"></i>
-                  <p>
-                    Kelola Jadwal Iklan
-                  </p>
-                </a>
-              </li>
-            <?php } ?>
-          <?php } ?>
-          <?php if ($this->fungsi->user_login()->level == 2) { ?>
-            <li class="nav-item has-treeview <?= $this->uri->segment(2) == 'laporan_pengguna' || $this->uri->segment(2) == 'laporan_iklan' || $this->uri->segment(2) == 'laporan_pembayaran' ? 'menu-open' : '' ?>">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-clipboard-list"></i>
-                <p>
-                  Laporan
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="" class="nav-link <?= $this->uri->segment(2) == 'laporan_iklan' ? 'active' : '' ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Iklan</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="<?= base_url('laporan/laporan_pengguna') ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan_pengguna' ? 'active' : '' ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Pengguna</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../index.html" class="nav-link <?= $this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : '' ?>">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Pembayaran</p>
-                  </a>
-                </li>
-              </ul>
             <?php } ?>
             <hr>
             <li class="nav-item has-treeview">

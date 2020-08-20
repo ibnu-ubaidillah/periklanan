@@ -42,6 +42,7 @@
                 <div class="icon">
                   <i class="fa fa-users"></i>
                 </div>
+                <a href="<?= base_url('laporan/laporan_pengguna') ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3">
@@ -52,8 +53,9 @@
                   <p>Total Pengajuan</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-user-plus"></i>
+                  <i class="fa fa-clipboard"></i>
                 </div>
+                <a href="<?= base_url('laporan/laporan_pengajuan') ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3">
@@ -66,6 +68,7 @@
                 <div class="icon">
                   <i class="fa fa-money-check-alt"></i>
                 </div>
+                <a href="<?= base_url('laporan/laporan_pembayaran') ?>" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <div class="col-lg-3 col-6 pt-3 pr-3">
@@ -78,6 +81,7 @@
                 <div class="icon">
                   <i class="fa fa-stream"></i>
                 </div>
+                <a href="" class="small-box-footer">Info Lengkap <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
         </div>

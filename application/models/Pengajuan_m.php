@@ -129,4 +129,16 @@ class Pengajuan_m extends CI_Model
         $this->db->where('id_pengajuan', $post['id_pengajuan']);
         $this->db->update('tbl_pengajuan', $array);
     }
+
+    public function getAllPengajuan()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_pengajuan');
+        $this->db->join('tbl_pengguna', 'tbl_pengajuan.id_pengguna = tbl_pengguna.id_pengguna');
+        $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+        $this->db->order_by('tbl_pengajuan.tanggal', 'DESC');
+
+        $query = $this->db->get()->result();
+        return $query;
+    }
 }

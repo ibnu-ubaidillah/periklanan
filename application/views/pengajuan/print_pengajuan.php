@@ -13,7 +13,7 @@
             <div class="card-header">
                 <center>
                     <img src="<?= base_url('assets/dist/img/logo-acrb.png') ?>">
-                    <h4>Laporan Data Pengguna</h4>
+                    <h4>Laporan Data Pengajuan</h4>
                 </center>
             </div>
             <div class="card-body">
@@ -22,39 +22,26 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Nama Lengkap</th>
-                                <th>Alamat</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Telepon</th>
-                                <th>Level</th>
+                                <th>Tanggal</th>
+                                <th>Kode Pengajuan</th>
+                                <th>Nama Pengguna</th>
+                                <th>Status</th>
+                                <th width="25%">Keterangan</th>
+                                <th>Terakhir Diupdate</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             $no = 1;
-                            foreach ($pengguna->result() as $key => $data) { ?>
+                            foreach ($pengajuan as $data) { ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
-                                    <td><?= $data->username ?></td>
-                                    <td><?= $data->email ?></td>
+                                    <td><?= date('d-m-Y', strtotime($data->tanggal)) ?></td>
+                                    <td><?= $data->kode_pengajuan ?></td>
                                     <td><?= $data->nama ?></td>
-                                    <td><?= $data->alamat ?></td>
-                                    <td><?= $data->jenis_kelamin ?></td>
-                                    <td><?= $data->no_telp ?></td>
-                                    <td>
-                                        <?php
-                                        if ($data->level == 1) {
-                                            echo "Admin";
-                                        } else if ($data->level == 2) {
-                                            echo "Atasan";
-                                        } else {
-                                            echo "Member";
-                                        }
-
-                                        ?>
-                                    </td>
+                                    <td><?= $data->status ?></td>
+                                    <td><?= $data->keterangan ?></td>
+                                    <td><?= date('d-m-Y', strtotime($data->update_pada)) ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

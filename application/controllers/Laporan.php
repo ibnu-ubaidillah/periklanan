@@ -7,6 +7,7 @@ class Laporan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('pengguna_m');
+        $this->load->model('pengajuan_m');
     }
 
     public function laporan_pengguna()
@@ -22,5 +23,20 @@ class Laporan extends CI_Controller
         $data['judul']  = "Periklanan | AboutCirebonID";
 
         $this->load->view('pengguna/laporan_pengguna', $data);
+    }
+
+    public function laporan_pengajuan()
+    {
+        $data['pengajuan'] = $this->pengajuan_m->getAllPengajuan();
+
+        $this->template->load('template', 'laporan/laporan_pengajuan', $data);
+    }
+
+    public function print_pengajuan()
+    {
+        $data['pengajuan'] = $this->pengajuan_m->getAllPengajuan();
+        $data['judul']  = "Periklanan | AboutCirebonID";
+
+        $this->load->view('pengajuan/print_pengajuan', $data);
     }
 }
