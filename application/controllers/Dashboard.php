@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller
 		$data['total_paket'] = $this->dashboard_m->getPaket();
 		$data['total_pengguna'] = $this->dashboard_m->getPengguna();
 		$data['total_pengajuan'] = $this->dashboard_m->getPengajuan();
+		$data['total_pembayaran'] = $this->dashboard_m->getPembayaran();
 
 		$this->template->load('template', 'dashboard', $data);
 	}

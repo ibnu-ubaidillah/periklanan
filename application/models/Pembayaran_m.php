@@ -165,4 +165,19 @@ class Pembayaran_m extends CI_Model
         $this->db->where('id_pembayaran', $post['id_pembayaran']);
         $this->db->update('tbl_pembayaran', $array);
     }
+
+    public function getAll()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_pembayaran');
+        $this->db->join('tbl_pengajuan', 'tbl_pembayaran.id_pengajuan = tbl_pengajuan.id_pengajuan');
+        $this->db->join('tbl_detailpaket', 'tbl_pengajuan.id_detail = tbl_detailpaket.id_detail');
+        $this->db->join('tbl_paket', 'tbl_detailpaket.id_paket = tbl_paket.id_paket');
+        $this->db->join('tbl_tipepaket', 'tbl_detailpaket.id_tipepaket = tbl_tipepaket.id_tipepaket');
+        $this->db->join('tbl_pengguna', 'tbl_pembayaran.id_pengguna = tbl_pengguna.id_pengguna');
+        $this->db->join('tbl_rekening', 'tbl_pembayaran.id_rekening = tbl_rekening.id_rekening');
+
+        $query = $this->db->get()->result();
+        return $query;
+    }
 }

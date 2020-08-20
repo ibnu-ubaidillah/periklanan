@@ -191,7 +191,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../index.html" class="nav-link <?= $this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : '' ?>">
+                    <a href="<?= base_url('laporan/laporan_pembayaran') ?>" class="nav-link <?= $this->uri->segment(2) == 'laporan_pembayaran' ? 'active' : '' ?>">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Laporan Pembayaran</p>
                     </a>

@@ -34,4 +34,14 @@ class Dashboard_m extends CI_Model
             return 0;
         }
     }
+
+    public function getPembayaran()
+    {
+        $query = $this->db->get_where('tbl_pembayaran', array('status_p =' => 'Lunas'));
+        if ($query->num_rows() > 0) {
+            return $query->num_rows();
+        } else {
+            return 0;
+        }
+    }
 }
