@@ -160,7 +160,7 @@ class Pembayaran_m extends CI_Model
     {
         $array['invoice'] = $post['invoice'];
         $array['bukti_pembayaran'] = $post['bukti_pembayaran'];
-        $array['status_p'] = 'Lunas';
+        $array['status_p'] = "Lunas";
 
         $this->db->where('id_pembayaran', $post['id_pembayaran']);
         $this->db->update('tbl_pembayaran', $array);
