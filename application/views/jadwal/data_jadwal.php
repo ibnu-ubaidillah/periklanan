@@ -33,9 +33,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Tanggal</th>
                                 <th>Kode Pembayaran</th>
                                 <th>Nama Pengiklan</th>
-                                <th>Tanggal</th>
                                 <th>Jam</th>
                                 <th>Keterangan</th>
                                 <?php if ($this->fungsi->user_login()->level == 1) { ?>
@@ -57,6 +57,7 @@
                                     <?php if ($this->fungsi->user_login()->level == 1) { ?>
                                         <td class="text-center">
                                             <form action="<?= site_url('jadwal/hapus') ?>" method="POST">
+                                                <a href="<?= site_url('jadwal/edit/' . $data->id_jadwal) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                                 <input type="hidden" value="<?= $data->id_jadwal ?>" name="id_jadwal">
                                                 <button class="btn btn-danger btn-sm" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="fa fa-trash"></i></button>
                                             </form>

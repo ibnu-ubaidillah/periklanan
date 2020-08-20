@@ -40,6 +40,37 @@ class Jadwal extends CI_Controller
         }
     }
 
+    public function edit($id)
+    {
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data['pembayaran'] = $this->jadwal_m->getPembayaran();
+            $query = $this->jadwal_m->getAll($id);
+            if ($query->num_rows() > 0) {
+                $data['row'] = $query->row();
+                $this->template->load('template', 'jadwal/edit_jadwal', $data);
+            } else {
+                echo "<script>
+                  alert('Data tidak ditemukan!');
+                  window.location='" . site_url('jadwal') . "';
+                </script>";
+            }
+        } else {
+            $post = $this->input->post(null, TRUE);
+            $this->jadwal_m->edit($post);
+
+            if ($this->db->affected_rows() > 0) {
+                echo "<script>
+                alert('Data berhasil disimpan');
+                window.location='" . site_url('jadwal') . "';
+                </script>";
+            }
+        }
+    }
+
     public function hapus()
     {
         $id = $this->input->post('id_jadwal');

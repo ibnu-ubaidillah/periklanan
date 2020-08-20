@@ -40,4 +40,25 @@ class Jadwal_m extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function getAll($id)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_jadwal');
+        $this->db->where('id_jadwal', $id);
+
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function edit($post)
+    {
+        $array['id_pembayaran'] = $post['id_pembayaran'];
+        $array['tanggal_tayang'] = $post['tanggal_tayang'];
+        $array['jam'] = $post['jam'];
+        $array['keterangan'] = $post['keterangan'];
+
+        $this->db->where('id_jadwal', $post['id_jadwal']);
+        $this->db->update('tbl_jadwal', $array);
+    }
 }
