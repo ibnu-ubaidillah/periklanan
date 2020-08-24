@@ -14,7 +14,7 @@
             </div>
             <?php $id = $this->fungsi->user_login()->id_pengguna; ?>
             <?php if ($this->fungsi->user_login()->level == 3) { ?>
-                <a href="<?= site_url('pembayaran/tambah/' . $id) ?>" class="btn btn-sm btn-primary" style="margin-left: 85.5%"><i class="fa fa-plus"></i> Tambah Pembayaran</a>
+                <a href="<?= site_url('pembayaran/tambah/' . $id) ?>" class="btn btn-sm btn-primary" style="margin-left: 85%"><i class="fa fa-plus"></i> Tambah Pembayaran</a>
             <?php } ?>
         </div>
         <!-- /.container-fluid -->

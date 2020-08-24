@@ -13,7 +13,7 @@
                 </div>
             </div>
             <?php if ($this->fungsi->user_login()->level == 3) { ?>
-                <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 86.4%"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
+                <a href="<?= site_url('pengajuan/tambah') ?>" class="btn btn-sm btn-primary" style="margin-left: 86.1%"><i class="fa fa-plus"></i> Tambah Pengajuan</a>
             <?php } ?>
         </div>
         <!-- /.container-fluid -->
@@ -111,7 +111,7 @@
                                                         <th width="17%">Kode Pengajuan</th>
                                                         <th width="20%">Nama Pengguna</th>
                                                         <th>Status</th>
-                                                        <th width="25%">Keterangan</th>
+                                                        <th width="20%">Keterangan</th>
                                                         <th>Diterima</th>
                                                         <th width="10%">Aksi</th>
                                                     <?php } else { ?>

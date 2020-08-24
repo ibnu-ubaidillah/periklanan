@@ -42,6 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="konten">Konten*</label>
+                                <small>(Max 4MB, res. 2048x1000)</small>
                                 <input type="file" name="konten" class="form-control">
                             </div>
                             <div class="form-group">

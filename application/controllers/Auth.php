@@ -8,8 +8,8 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
         $this->load->model('pengguna_m');
+        $this->load->library('form_validation');
     }
 
     public function login()
@@ -59,6 +59,7 @@ class Auth extends CI_Controller
     public function daftar()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|is_unique[tbl_pengguna.username]');
+        $this->form_validation->set_rules('email', 'E-mail', 'required|is_unique[tbl_pengguna.email]');
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|min_length[3]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
         $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|max_length[15]');
@@ -84,17 +85,17 @@ class Auth extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
 
-        $data['username'] = $post['username'];
-        $data['password'] = sha1($post['password']);
-        $data['email'] = $post['email'];
-        $data['nama'] = $post['nama'];
-        $data['alamat'] = $post['alamat'];
-        $data['no_telp'] = $post['no_hp'];
-        $data['jenis_kelamin'] = $post['jk'];
-        $data['level'] = 3;
-        $data['aktif'] = 1;
+        $array['username'] = $post['username'];
+        $array['password'] = sha1($post['password']);
+        $array['email'] = $post['email'];
+        $array['nama'] = $post['nama'];
+        $array['alamat'] = $post['alamat'];
+        $array['no_telp'] = $post['no_hp'];
+        $array['jenis_kelamin'] = $post['jk'];
+        $array['level'] = 3;
+        $array['aktif'] = 1;
 
-        $this->db->insert('tbl_pengguna', $data);
+        $this->db->insert('tbl_pengguna', $array);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Selamat!</strong> Akun anda berhasil dibuat, silahkan login.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -46,6 +46,7 @@ class Pengajuan extends CI_Controller
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
             $config['file_name']            = 'konten-' . date('dmY') . '-' . substr(md5(rand()), 0, 10);
             $config['overwrite']            = true;
+            $config['max_size']             = 4096;
             $config['max_width']            = 2048;
             $config['max_height']           = 1000;
 

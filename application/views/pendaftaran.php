@@ -26,7 +26,7 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Daftar Akun Baru</p>
 
-                <form action="<?= base_url('auth/proses_daftar') ?>" method="POST">
+                <form action="<?= base_url('auth/daftar') ?>" method="POST">
                     <div class="input-group">
                         <input type="text" name="nama" value="<?= set_value('nama') ?>" class="form-control" placeholder="Nama lengkap">
                         <div class="input-group-append">
