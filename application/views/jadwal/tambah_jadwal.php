@@ -35,21 +35,22 @@
                                 <select name="id_pembayaran" id="nama" class="form-control">
                                     <option value=""> - pilih kode - </option>
                                     <?php foreach ($pembayaran as $data) { ?>
-                                        <option value="<?= $data->id_pembayaran ?>"><?= $data->kode_pembayaran ?></option>
+                                        <option value="<?= $data->id_pembayaran ?>" <?= set_value('id_pembayaran') == $data->id_pembayaran ? "selected" : null ?>><?= $data->kode_pembayaran ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tgl">Tanggal</label>
-                                <input type="date" name="tanggal_tayang" id="tgl" class="form-control">
+                                <input type="date" name="tanggal_tayang" id="tgl" class="form-control" value="<?= set_value('tanggal_tayang') ?>">
                             </div>
                             <div class="form-group">
                                 <label for="jam">Jam</label>
-                                <input type="time" name="jam" id="jam" class="form-control">
+                                <input type="time" name="jam" id="jam" value="<?= set_value('jam') ?>" class="form-control">
+                                <?= form_error('jam', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="ket">Keterangan* </label>
-                                <textarea name="keterangan" cols="5" rows="5" class="form-control"></textarea>
+                                <textarea name="keterangan" cols="5" rows="5" class="form-control"><?= set_value('keterangan') ?></textarea>
                                 <?= form_error('keterangan') ?>
                             </div>
                             <div class="form-group">

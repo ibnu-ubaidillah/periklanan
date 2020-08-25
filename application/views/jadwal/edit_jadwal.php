@@ -50,6 +50,7 @@
                             <div class="form-group">
                                 <label for="jam">Jam</label>
                                 <input type="time" name="jam" id="jam" class="form-control" value="<?= $this->input->post('jam') ?? $row->jam ?>">
+                                <?= form_error('jam') ?>
                             </div>
                             <div class=" form-group">
                                 <label for="ket">Keterangan* </label>
