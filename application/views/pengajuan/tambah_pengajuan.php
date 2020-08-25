@@ -42,13 +42,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="konten">Konten*</label>
-                                <small>(Max 4MB, res. 2048x1000)</small>
+                                <small>(Max 4MB, res. 2048x1000)(.gif|.jpg|.png|.jpeg)</small>
                                 <input type="file" name="konten" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Caption*</label>
                                 <textarea name="caption" id="caption" cols="30" rows="5" class="form-control" autofocus> <?= set_value('caption') ?></textarea>
-                                <?= form_error('caption') ?>
+                                <?= form_error('caption', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="id_detail">Daftar Paket*</label>
@@ -79,6 +79,7 @@
                                         </div>
                                     <?php } ?>
                                 </div>
+                                <?= form_error('id_detail', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Simpan</button>

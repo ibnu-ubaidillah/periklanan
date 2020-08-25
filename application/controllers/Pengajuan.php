@@ -26,8 +26,9 @@ class Pengajuan extends CI_Controller
     public function tambah()
     {
         $this->form_validation->set_rules('caption', 'Caption', 'required');
+        $this->form_validation->set_rules('id_detail', 'Daftar Paket', 'required');
 
-        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan diisi');
 
         if ($this->form_validation->run() == FALSE) {
             $dariDB = $this->pengajuan_m->generateKodePengajuan();

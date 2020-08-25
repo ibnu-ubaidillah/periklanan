@@ -29,7 +29,7 @@ class Pembayaran extends CI_Controller
         $this->form_validation->set_rules('id_rekening', 'Daftar Rekening', 'required');
         $this->form_validation->set_rules('id_pengajuan', 'Data Pengajuan', 'required');
 
-        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan diisi');
 
         if ($this->form_validation->run() == FALSE) {
             $dariDB = $this->pembayaran_m->generateKodePembayaran();

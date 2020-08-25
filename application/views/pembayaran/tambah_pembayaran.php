@@ -45,10 +45,10 @@
                                 <select name="id_pengajuan" class="form-control">
                                     <option value=""> - Kode Pengajuan Anda - </option>
                                     <?php foreach ($pengajuan as $data) { ?>
-                                        <option value="<?= $data->id_pengajuan ?>"><?= $data->kode_pengajuan ?></option>
+                                        <option value="<?= $data->id_pengajuan ?>" <?= set_value('id_pengajuan') == $data->id_pengajuan ? "selected" : null ?>><?= $data->kode_pengajuan ?></option>
                                     <?php } ?>
                                 </select>
-                                <?= form_error('id_pengajuan') ?>
+                                <?= form_error('id_pengajuan', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="id_detail">Daftar Rekening*</label>
@@ -78,7 +78,7 @@
                                         </div>
                                     <?php } ?>
                                 </div>
-                                <?= form_error('id_rekening') ?>
+                                <?= form_error('id_rekening', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Lanjutkan</button>

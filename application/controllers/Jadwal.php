@@ -21,9 +21,10 @@ class Jadwal extends CI_Controller
     public function tambah()
     {
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        $this->form_validation->set_rules('id_pembayaran', 'Kode Pembayaran', 'required');
         $this->form_validation->set_rules('jam', 'Jam', 'required|is_unique[tbl_jadwal.jam]');
 
-        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan diisi');
         $this->form_validation->set_message('is_unique', '{field} tesebut sudah terpakai, silahkan ganti!');
 
         if ($this->form_validation->run() == FALSE) {
@@ -45,9 +46,10 @@ class Jadwal extends CI_Controller
     public function edit($id)
     {
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        $this->form_validation->set_rules('id_pembayaran', 'Kode Pembayaran', 'required');
         $this->form_validation->set_rules('jam', 'Jam', 'required||is_unique[tbl_jadwal.jam]');
 
-        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan diisi');
         $this->form_validation->set_message('is_unique', '{field} tesebut sudah terpakai, silahkan ganti!');
 
         if ($this->form_validation->run() == FALSE) {

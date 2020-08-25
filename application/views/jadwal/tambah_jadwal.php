@@ -38,6 +38,7 @@
                                         <option value="<?= $data->id_pembayaran ?>" <?= set_value('id_pembayaran') == $data->id_pembayaran ? "selected" : null ?>><?= $data->kode_pembayaran ?></option>
                                     <?php } ?>
                                 </select>
+                                <?= form_error('id_pembayaran', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="tgl">Tanggal</label>
