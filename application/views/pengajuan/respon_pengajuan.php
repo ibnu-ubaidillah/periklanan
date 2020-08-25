@@ -36,13 +36,14 @@
                                 <?php foreach ($pengajuan as $data) { ?>
                                     <input type="hidden" name="id_pengajuan" value="<?= $data->id_pengajuan ?>">
                                 <?php } ?>
-                                <input type="radio" name="status" id="status" value="Diterima"> Terima
-                                <input type="radio" name="status" id="status" value="Ditolak"> Tolak
+                                <input type="radio" name="status" id="status" value="Diterima" <?= set_value('status') == 'Diterima' ? "checked" : null ?>> Terima
+                                <input type="radio" name="status" id="status" value="Ditolak" <?= set_value('status') == 'Ditolak' ? "checked" : null ?>> Tolak
+                                <?= form_error('status', '<br /> <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <label for="alasan">Keterangan *</label>
                                 <textarea name="alasan" id="alasan" cols="5" rows="5" class="form-control"></textarea>
-                                <?= form_error('alasan') ?>
+                                <?= form_error('alasan', ' <small class="text-danger">', '</small>') ?>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-paper-plane"></i> Simpan</button>

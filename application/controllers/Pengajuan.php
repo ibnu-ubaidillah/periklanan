@@ -77,8 +77,10 @@ class Pengajuan extends CI_Controller
 
     public function respon($id)
     {
+        $this->form_validation->set_rules('status', 'Respon', 'required');
         $this->form_validation->set_rules('alasan', 'Keterangan', 'required');
-        $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
+
+        $this->form_validation->set_message('required', '%s masih kosong!, silahkan diisi');
 
         if ($this->form_validation->run() == FALSE) {
             $data['pengajuan'] = $this->pengajuan_m->getDetailPengajuan($id);
