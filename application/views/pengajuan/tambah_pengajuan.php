@@ -30,6 +30,24 @@
                 <div class="row">
                     <div class="col-md-6 offset-3">
                         <!-- <?= validation_errors(); ?> -->
+                        <div class="pull-left">
+                            <p>
+                                <strong>Keterangan :</strong>
+                                <li>
+                                    <strong>Paket Standard (Dengan ADS)</strong><br />
+                                    Iklan diposting di Instagram dan berikutnya diiklankan juga di IG ads selama 4 hari, begitupun postingan juga postingan selanjutnya.
+                                </li>
+                                <li>
+                                    <strong>Paket Medium (Dengan ADS)</strong><br />
+                                    Iklan diposting di Instagram dan berikutnya diiklankan juga di IG ads dan FB ads selama 5 hari.
+                                </li>
+                                <li>
+                                    <strong>Paket Premium (Dengan ADS</strong>)<br />
+                                    Iklan diposting di Instagram dan berikutnya diiklankan juga di IG ads dan FB ads selama 15 hari.
+                                    Bonus : Posting IG story dan Page FB About Cirebon.
+                                </li>
+                            </p>
+                        </div>
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="kode_pengajuan">Kode Pengajuan</label>
