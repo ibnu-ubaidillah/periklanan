@@ -113,7 +113,7 @@
                                                         <th>Status</th>
                                                         <th width="20%">Keterangan</th>
                                                         <th>Diterima</th>
-                                                        <th width="10%">Aksi</th>
+                                                        <th width="30%">Aksi</th>
                                                     <?php } else { ?>
                                                         <th>#</th>
                                                         <th width="11%">Tanggal</th>
@@ -150,12 +150,15 @@
                                                         </td>
                                                         <td><?= $data->keterangan ?></td>
                                                         <td><?= date('d-m-Y', strtotime($data->update_pada)) ?></td>
-                                                        <?php if ($this->fungsi->user_login()->level == 1) { ?>
+                                                        <?php
+                                                        $id = $this->fungsi->user_login()->id_pengguna;
+                                                        if ($this->fungsi->user_login()->level == 1) { ?>
                                                             <td class="text-center">
                                                                 <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i> Detail</a>
                                                             </td>
                                                         <?php } else { ?>
                                                             <td class="text-center">
+                                                                <a href="<?= site_url('pembayaran/tambah/' . $id) ?>" class="btn btn-sm btn-info"><i class="fa fa-credit-card"></i> Bayar</a>
                                                                 <a href="<?= site_url('pengajuan/detail/' . $data->id_pengajuan) ?>" class="btn btn-sm btn-warning"><i class="fa fa-eye"></i> Detail</a>
                                                             </td>
                                                         <?php } ?>

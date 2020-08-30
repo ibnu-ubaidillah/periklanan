@@ -63,7 +63,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|min_length[3]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
         $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|max_length[15]');
-        $this->form_validation->set_rules('level', 'Level', 'required');
+        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
 
         $this->form_validation->set_message('required', '%s masih kosong!, silahkan isi kembali');
         $this->form_validation->set_message('min_length[3]', '{field} minimal 3 karakter!');
